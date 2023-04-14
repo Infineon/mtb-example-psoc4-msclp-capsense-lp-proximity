@@ -4,37 +4,34 @@ This code example demonstrates an implementation of a low-power proximity sensin
 
 This document also explains how to manually tune the low-power widget for optimum performance and largest distance w.r.t parameters such as power consumption and response time using the CSD-RM sensing technique and CAPSENSE&trade; Tuner.
 
-[View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-low-power-proximity)
+[View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-lp-proximity)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6ImRhc2F2aWppdCIsIkRvYyB2ZXJzaW9uIjoiMS4wLjAiLCJEb2MgTGFuZ3VhZ2UiOiJFbmdsaXNoIiwiRG9jIERpdmlzaW9uIjoiTUNEIiwiRG9jIEJVIjoiSUNXIiwiRG9jIEZhbWlseSI6IlBTT0MifQ==)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6IndhaW5nYW5rYXIiLCJEb2MgdmVyc2lvbiI6IjEuMS4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
+
 
 ## Requirements
 
-- [ModusToolbox&trade; software](https://www.cypress.com/products/modustoolbox-software-environment) v3.0 or later
+- [ModusToolbox&trade; software](https://www.infineon.com/cms/en/design-support/tools/sdk/modustoolbox-software/) v3.0 or later
 
-  **Note:** This code example version requires ModusToolbox&trade; software version 3.0 and is not backward compatible with v2.4 or older versions.
+   **Note:** This code example version requires ModusToolbox&trade; software version 3.0 or later and is not backward compatible with v2.4 or older versions.
 
-- Board support package (BSP) minimum required version: 0.5.0
+- Board support package (BSP) minimum required version: 0.6.0
 - Programming language: C
-- Associated parts: [PSoC&trade; 4000T](www.infineon.com/002-33949)
-
+- Associated parts: PSoC&trade; 4000T datasheet
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
 
-- GNU Arm&reg; Embedded Compiler v10.3.1 (`GCC_ARM`) - Default value of `TOOLCHAIN`
-- Arm&reg; Compiler v6.13 (`ARM`)
-- IAR C/C++ Compiler v8.42.2 (`IAR`)
-
+- GNU Arm&reg; embedded compiler v10.3.1 (`GCC_ARM`) - Default value of `TOOLCHAIN`
+- Arm&reg; compiler v6.16 (`ARM`)
+- IAR C/C++ compiler v9.30.1 (`IAR`)
 
 ## Supported kits (make variable 'TARGET')
 
-- [PSoC&trade; 4000T CAPSENSE&trade; evaluation kit](https://www.infineon.com/CY8CKIT-040T) (`CY8CKIT-040T`) - Default `TARGET`
-
+- PSoC&trade; 4000T CAPSENSE&trade; evaluation kit (`CY8CKIT-040T`) - Default value of `TARGET`
 
 ## Hardware setup
 
-This example uses the board's default configuration. See the [kit user guide](www.infineon.com/002-34472) to ensure that the board is configured correctly.
-
+This example uses the board's default configuration. See the Kit user guide to ensure that the board is configured correctly.
 
 ## Software setup
 
@@ -46,11 +43,11 @@ Create the project and open it using one of the following:
 
 <details><summary><b>In Eclipse IDE for ModusToolbox&trade; software</b></summary>
 
-1. Click the **New Application** link in the **Quick Panel** (or, use **File** > **New** > **ModusToolbox&trade; Application**). This launches the [Project Creator](https://www.cypress.com/ModusToolboxProjectCreator) tool.
+1. Click the **New Application** link in the **Quick Panel** (or, use **File** > **New** > **ModusToolbox&trade; Application**). This launches the [Project Creator](https://www.infineon.com/ModusToolboxProjectCreator) tool.
 
 2. Pick a kit supported by the code example from the list shown in the **Project Creator - Choose Board Support Package (BSP)** dialog.
 
-   When you select a supported kit, the example is reconfigured automatically to work with the kit. To work with a different supported kit later, use the [Library Manager](https://www.cypress.com/ModusToolboxLibraryManager) to choose the BSP for the supported kit. You can use the Library Manager to select or update the BSP and firmware libraries used in this application. To access the Library Manager, click the link from the **Quick Panel**.
+   When you select a supported kit, the example is reconfigured automatically to work with the kit. To work with a different supported kit later, use the [Library Manager](https://www.infineon.com/dgdl/Infineon-ModusToolbox_Library_Manager_2.0_User_Guide-UserManual-v01_00-EN.pdf?fileId=8ac78c8c8386267f0183a960c5945992) to choose the BSP for the supported kit. You can use the Library Manager to select or update the BSP and firmware libraries used in this application. To access the Library Manager, click the link from the **Quick Panel**.
 
    You can also just start the application creation process again and select a different kit.
 
@@ -64,7 +61,7 @@ Create the project and open it using one of the following:
 
 6. Click **Create** to complete the application creation process.
 
-For more details, see the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.cypress.com/MTBEclipseIDEUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/ide_{version}/docs/mt_ide_user_guide.pdf*).
+For more details, see the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.infineon.com/MTBEclipseIDEUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mt_ide_user_guide.pdf*).
 
 </details>
 
@@ -74,7 +71,7 @@ ModusToolbox&trade; software provides the Project Creator as both a GUI tool and
 
 Use a CLI terminal to invoke the "project-creator-cli" tool. On Windows, use the command line "modus-shell" program provided in the ModusToolbox&trade; software installation instead of a standard Windows command-line application. This shell provides access to all ModusToolbox&trade; software tools. You can access it by typing `modus-shell` in the search box in the Windows menu. In Linux and macOS, you can use any terminal application.
 
-This tool has the following arguments:
+The "project-creator-cli" tool has the following arguments:
 
 Argument | Description | Required/optional
 ---------|-------------|-----------
@@ -82,16 +79,36 @@ Argument | Description | Required/optional
 `--app-id`   | Defined in the `<id>` field of the [CE](https://github.com/Infineon?q=ce-manifest&type=&language=&sort=) manifest | Required
 `--target-dir`| Specify the directory in which the application is to be created if you prefer not to use the default current working directory | Optional
 `--user-app-name`| Specify the name of the application if you prefer to have a name other than the example's default name | Optional
-
 <br>
 
-The following example will clone the "[PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power proximity tuning](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-low-power-proximity)" application with the desired name "CAPSENSE_Low_Power_Proximity_Tuning" configured for the *CY8CKIT-040T* BSP into the specified working directory, *C:/mtb_projects*:
+The following example clones the "[PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power proximity tuning](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-lp-proximity)" application with the desired name "CAPSENSE_Low_Power_Proximity_Tuning" configured for the *CY8CKIT-040T* BSP into the specified working directory, *C:/mtb_projects*:
 
    ```
-   project-creator-cli --board-id CY8CKIT-040T --app-id mtb-example-psoc4-msclp-capsense-low-power-proximity --user-app-name CAPSENSE_Low_Power_Proximity_Tuning --target-dir "C:/mtb_projects"
+   project-creator-cli --board-id CY8CKIT-040T --app-id mtb-example-psoc4-msclp-capsense-lp-proximity --user-app-name CAPSENSE_Low_Power_Proximity_Tuning --target-dir "C:/mtb_projects"
    ```
 
-**Note:** The project-creator-cli tool uses the `git clone` and `make getlibs` commands to fetch the repository and import the required libraries. For details, see the "Project creator tools" section of the [ModusToolbox&trade; software user guide](https://www.cypress.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
+**Note:** The project-creator-cli tool uses the `git clone` and `make getlibs` commands to fetch the repository and import the required libraries. For details, see the "Project creator tools" section of the [ModusToolbox&trade; software user guide](https://www.infineon.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
+
+To work with a different supported kit later, use the [Library Manager](https://www.infineon.com/ModusToolboxLibraryManager) to choose the BSP for the supported kit. You can invoke the Library Manager GUI tool from the terminal using `make library-manager` command or use the Library Manager CLI tool "library-manager-cli" to change the BSP.
+
+The "library-manager-cli" tool has the following arguments:
+
+Argument | Description | Required/optional
+---------|-------------|-----------
+`--add-bsp-name` | Name of the BSP that should be added to the application | Required
+`--set-active-bsp` | Name of the BSP that should be as active BSP for the application | Required
+`--add-bsp-version`| Specify the version of the BSP that should be added to the application if you do not wish to use the latest from manifest | Optional
+`--add-bsp-location`| Specify the location of the BSP (local/shared) if you prefer to add the BSP in a shared path | Optional
+
+<br />
+
+Following example adds the CY8CKIT-040T BSP to the already created application and makes it the active BSP for the app:
+
+   ```
+   library-manager-cli --project "C:/mtb_projects/CAPSENSE_Low_Power_Proximity_Tuning" --add-bsp-name CY8CKIT-040T --add-bsp-version "latest-v4.X" --add-bsp-location "local"
+
+   library-manager-cli --project "C:/mtb_projects/CAPSENSE_Low_Power_Proximity_Tuning" --set-active-bsp APP_CY8CKIT-040T
+   ```
 
 </details>
 
@@ -99,7 +116,7 @@ The following example will clone the "[PSoC&trade; 4: MSCLP CAPSENSE&trade; low-
 
 Use one of the following options:
 
-- **Use the standalone [Project Creator](https://www.cypress.com/ModusToolboxProjectCreator) tool:**
+- **Use the standalone [Project Creator](https://www.infineon.com/ModusToolboxProjectCreator) tool:**
 
    1. Launch Project Creator from the Windows Start menu or from *{ModusToolbox&trade; software install directory}/tools_{version}/project-creator/project-creator.exe*.
 
@@ -119,39 +136,38 @@ Use one of the following options:
 
    3. Follow the instructions displayed in the terminal to create or import the application as an IDE project.
 
-For a list of supported IDEs and more details, see the "Exporting to IDEs" section of the [ModusToolbox&trade; software user guide](https://www.cypress.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
+For a list of supported IDEs and more details, see the "Exporting to IDEs" section of the [ModusToolbox&trade; software user guide](https://www.infineon.com/ModusToolboxUserGuide) (locally available at *{ModusToolbox&trade; software install directory}/docs_{version}/mtb_user_guide.pdf*).
 
 </details>
 
-The project has the necessary settings by default, so you can go to the [Operation](#operation) section to test the example. If you want to understand the tuning process and follow the stages for this kit or your own board, go to the [Tuning procedure](#tuning-procedure) section and then test it using the [Operation](#operation) section.
-
+The project already has the necessary settings by default, so you can go to [Operation](#operation) to test the example. If you want to understand the tuning process and follow the stages for this kit or your own board, go to [Tuning procedure](#tuning-procedure) and then test it using [Operation](#operation).
 
 ## Operation
 
-1. Connect the USB cable between the [CY8CKIT-040T kit](https://www.infineon.com/CY8CKIT-040T) and the PC as follows:
+1. Connect the board to your PC using the provided micro USB cable through the KitProg3 USB connector as follows:
 
-   **Figure 1. Connecting the CY8CKIT-040T kit with the PC**
+   **Figure 1. Connecting the CY8CKIT-040T kit to a computer**
 
    <img src="images/psoc4000t_kit_connected.png" alt="Figure 1" width="350"/>
 
-2. The SWD, user LED, and I2C modes are multiplexed to the same pins (GPIO pins P3[2] and P3[3]) in CY8CKIT-040T. The interface can be switched between these using FW-loader commands. Download and unzip the *Batch_files_for_mux_selection* zipped file from the Beta package to the *bin* folder inside the *fw-loader* folder in the ModusToolbox&trade; installation directory.
-
+2. The SWD, I2C and user LED modes are multiplexed to the same pins (GPIO Pins P3[2] and P3[3]) in CY8CKIT-040T. The interface can be switched between these using the FW-loader commands. Download and unzip the *Batch_files_for_mux_selection* zipped file from the Beta package to the *bin* folder inside the *fw-loader* folder in the ModusToolbox&trade; installation directory. 
+    
    Default location: */ModusToolbox/tools_3.0/fw-loader/bin*
-
-   Select SWD mode by running the *Select_SWD* batch file to program the CY8CKIT-040T kit. For detailed information, see Section 2.3.1 in [CY8CKIT-040T kit user guide](www.infineon.com/002-34472).
+   
+   Select the SWD mode by running the `Select_SWD` batch file to program the CY8CKIT-040T kit. For detailed information, see **Section 2.3.1** in CY8CKIT-040T kit user guide.
 
 3. Program the board using one of the following:
 
-   <details><summary><b>Using Eclipse IDE for ModusToolbox&trade;</b></summary>
+   <details><summary><b>Using Eclipse IDE for ModusToolbox&trade; software</b></summary>
 
       1. Select the application project in the Project Explorer.
 
       2. In the **Quick Panel**, scroll down, and click **\<Application Name> Program (KitProg3_MiniProg4)**.
-      </details>
+   </details>
 
    <details><summary><b>Using CLI</b></summary>
 
-     From the terminal, execute the `make program` command to build and program the application using the default toolchain to the default target. You can specify a target and toolchain manually:
+     From the terminal, execute the `make program` command to build and program the application using the default toolchain to the default target. The target and the toolchain is specified manually:
       ```
       make program TARGET=<BSP> TOOLCHAIN=<toolchain>
       ```
@@ -169,10 +185,10 @@ The project has the necessary settings by default, so you can go to the [Operati
 
    **Table 1. LED1 and LED3 state for Proximity and Touch**
 
-   | Hand position  | LED1  | LED3  |
-   |:------------------| :-----| :-----|
-   | Proximity  | OFF |RED  |
-   | Touch  | BLUE | RED |
+    Hand position  | LED1  | LED3  |
+   :------------------| :-----| :-----|
+    Proximity  | OFF |RED  |
+    Touch  | BLUE | RED |
 
    <br>
 
@@ -187,17 +203,17 @@ The project has the necessary settings by default, so you can go to the [Operati
 
 2. Open CAPSENSE&trade; Tuner from the 'Tools' section in the IDE Quick Panel.
 
-   You can also run the CAPSENSE&trade; Tuner application standalone from *{ModusToolbox&trade; install directory}/ModusToolbox/tools_{version}/capsense-configurator/capsense-tuner*. In this case, after opening the application, select **File** > **Open** and open the *design.cycapsense* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS/* folder.
+   You can also run the CAPSENSE&trade; Tuner application standalone from *{ModusToolbox&trade; install directory}/ModusToolbox&trade;/tools_{version}/capsense-configurator/capsense-tuner*. In this case, after opening the application, select **File** > **Open** and open the *design.cycapsense* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS/* folder.
 
-   See the [ModusToolbox&trade; user guide](https://www.infineon.com/ModusToolboxUserGuide) (locally available at *ModusToolbox install directory}/docs_{version}/mtb_user_guide.pdf*)for options to open the CAPSENSE&trade; tuner application using the CLI.
+   See the [ModusToolbox&trade; user guide](https://www.infineon.com/ModusToolboxUserGuide) (locally available at *ModusToolbox&trade; install directory}/docs_{version}/mtb_user_guide.pdf*)for options to open the CAPSENSE&trade; tuner application using the CLI.
 
 3. Ensure that the kit is in CMSIS-DAP Bulk mode (KitProg3 Status LED is ON and not blinking). See [Firmware-loader](https://github.com/Infineon/Firmware-loader) to learn on how to update the firmware and switch modes in KitProg3.
 
 4. In the tuner application, click on the **Tuner communication setup** icon or select **Tools** > **Tuner communication setup**. In the window that appears, select the I2C checkbox under KitProg3 and configure as follows:
 
-   - I2C address: 8
-   - Sub-address: 2 bytes
-   - Speed (kHz): 400
+   - **I2C address:** 8
+   - **Sub-address:** 2 bytes
+   - **Speed (kHz):** 400
 
    These are the same values set in the EZI2C resource.
 
@@ -235,13 +251,13 @@ The project has the necessary settings by default, so you can go to the [Operati
 
 10. Switch to the **SNR Measurement** tab for measuring the SNR and verify that the SNR is above 5:1 and Signal count is above 50; select **Proximity0** and **Proximity0_Sns0** sensor, and then click **Acquire noise** as follows:
 
-    **Figure 8. CAPSENSE&trade; Tuner - SNR measurement: acquire noise**
+    **Figure 8. CAPSENSE&trade; Tuner - SNR measurement: Acquire noise**
 
     <img src="images/tuner-acquire-noise.png" alt="Figure 8" width="750"/>
 
       **Note:** Because the scan refresh rate is lower in **ALR** mode, it will take more time to acquire noise. Touch the CAPSENSE&trade; proximity loop before clicking **Acquire noise** to transition the device to **ACTIVE** mode to get signal faster.
 
-11. Once noise is acquired, bring your hand near the proximity loop at a distance around **45mm** above it and then click **Acquire signal**. Ensure that the hand remains above the proximity loop as long as the signal acquisition is in progress. Observe that the SNR is above 5:1 and Signal count is above 50. If not, repeat signal acquisition by lowering the hand, and thus getting a higher signal.
+11. Once noise is acquired, bring your hand near the proximity loop at a distance around **45 mm** above it and then click **Acquire signal**. Ensure that the hand remains above the proximity loop as long as the signal acquisition is in progress. Observe that the SNR is above 5:1 and Signal count is above 50. If not, repeat signal acquisition by lowering the hand, and thus getting a higher signal.
 
     The maximum distance the proximity loop can sense is where the SNR is greater than 5:1 for a particular set of hardware parameters. **Later in this example, you will learn how changing the hardware parameters affect the distance and SNR** in section [Set initial hardware parameters](#stage-1-set-initial-hardware-parameters).
 
@@ -251,7 +267,7 @@ The project has the necessary settings by default, so you can go to the [Operati
 
     <img src="images/tuner-acquire-signal.png" alt="Figure 9" width="750"/>
 
-12. To measure the SNR of the low-power sensor (**LowPower0_Sns0**), set the **Finger threshold** to max (65535) in **Widget/Sensor Parameters** for the **LowPower0** widget as shown in Figure 10. Also set the **Proximity threshold** and **Touch Threshold** to max (65535) value in the **Widget/Sensor Parameters** of the **Proximity_Sns0** widget as shown in Figure 11.
+12. To measure the SNR of the low-power sensor (**LowPower0_Sns0**), set the **Finger threshold** to max (65535) in **Widget/Sensor Parameters** for the **LowPower0** widget as shown in Figure 10. A set the **Proximity threshold** and **Touch Threshold** to max (65535) value in the **Widget/Sensor Parameters** of the **Proximity_Sns0** widget as shown in Figure 11.
 
     This is required because the application will stop scanning the low-power sensor when there is a proximity or touch detected and will transition to active mode.
 
@@ -278,14 +294,15 @@ Follow the instructions in the **Measure current at different power modes** sect
 
 ## Tuning procedure
 
-### Create custom BSP for your board
 
-1. Create a custom BSP for your board having any device, by following the steps given in [KBA231373](https://community.cypress.com/t5/Knowledge-Base-Articles/ModusToolbox-2-2-and-later-Make-a-Custom-BSP-KBA231373/ta-p/251107). In this code example, it was created for the device "CY8C4046LQI-T452".
+<details><summary><b> Create custom BSP for your board </b></summary>
 
-2. Open the *design.modus* file from *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS/* folder obtained in the previous step and enable CAPSENSE&trade; to get *design.cycapsense* file. CAPSENSE&trade; configuration can then be started from scratch as explained below.
+1. Create a custom BSP for your board having any device, by following the steps given in [ModusToolbox™ BSP Assistant user guide](https://www.infineon.com/dgdl/Infineon-ModusToolbox_BSP_Assistant_1.0_User_Guide-UserManual-v02_00-EN.pdf?fileId=8ac78c8c8386267f0183a972f45c59af). This code example was created for the device "CY8C4046LQI-T452".
+
+2. Open the *design.modus* file from the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/config/* folder obtained in the previous step and enable CAPSENSE&trade; to get the *design.cycapsense* file. CAPSENSE&trade; configuration can then be started from scratch as explained below.
 
 
-### Tuning flow
+</details>
 
 The following steps explain the tuning procedure for the proximity loop and the low-power widget.
 
@@ -295,7 +312,7 @@ The tuning flow of the proximity widget is shown in **Figure 13**.
 
 **Figure 13. Proximity widget Tuning flow**
 
-   <img src="images/proximity-tuning-flow.png" alt="Figure 13"/>
+   <img src="images/flowchart_for_tuning.png" alt="Figure 13"/>
 
 To tune the low-power widget, see the **Tuning flow** section of the code example [PSoC™ 4: MSCLP CAPSENSE™ low power](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-low-power).
 
@@ -303,23 +320,22 @@ Do the following to tune the proximity widget:
 
 - [Stage 1: Set initial hardware parameters](#stage-1-set-initial-hardware-parameters)
 
-- [Stage 2: Measure sensor parasitic capacitance (Cp)](#stage-2-measure-sensor-parasitic-capacitance-cp)
+- [Stage 2: Calculate and set sense clock frequency](#stage-2-calculate-and-set-sense-clock-frequency)
 
-- [Stage 3: Calculate and set sense clock frequency and init sub-conversions](#stage-3-calculate-and-set-sense-clock-frequency-and-init-sub-conversions)
+- [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-refersh-rate)
 
-- [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-and-refresh-rate)
+- [Stage 4: CDAC dither parameters](#stage-5-cdac-dither-parameters)
 
-- [Stage 5: Tune threshold parameters](#stage-5-tune-threshold-parameters)
-
+- [Stage 5: Tune threshold parameters](#stage-6-tune-threshold-parameters)
 
 ### Stage 1: Set initial hardware parameters
--------------
+-------------------------
 
 1. Connect the board to your PC using the provided USB cable through the KitProg3 USB connector.
 
 2. Launch the Device Configurator tool.
 
-   You can launch the Device Configurator in Eclipse IDE for ModusToolbox&trade; from the **Tools** section in the IDE Quick Panel or in standalone mode from *{ModusToolbox&trade; install directory}/ModusToolbox/tools_{version}/device-configurator/device-configurator*. In this case, after opening the application, select **File** > **Open** and open the *design.modus* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS* folder.
+   You can launch the Device Configurator in Eclipse IDE for ModusToolbox&trade; from the **Tools** section in the IDE Quick Panel or in standalone mode from *{ModusToolbox&trade; install directory}/ModusToolbox&trade;/tools_{version}/device-configurator/device-configurator*. In this case, after opening the application, select **File** > **Open** and open the *design.modus* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS* folder.
 
 3. Enable CAPSENSE&trade; channel in Device Configurator as follows:
 
@@ -327,13 +343,13 @@ Do the following to tune the proximity widget:
 
    <img src="images/device-configurator.png" alt="Figure 14"/>
 
-   Save the changes and close the window.
+   Save th7e changes and close the window.
 
 4. Launch the CAPSENSE&trade; Configurator tool.
 
    You can launch the CAPSENSE&trade; Configurator tool in Eclipse IDE for ModusToolbox&trade; from the "CAPSENSE&trade;" peripheral setting in the Device Configurator or directly from the Tools section in the IDE Quick Panel.
 
-   You can also launch it in standalone mode from *{ModusToolbox&trade; install directory}/ModusToolbox/tools_{version}/capsense-configurator/capsense-configurator*. In this case, after opening the application, select **File** > **Open** and open the *design.cycapsense* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS* folder.
+   You can also launch it in standalone mode from *{ModusToolbox&trade; install directory}/ModusToolbox&trade;/tools_{version}/capsense-configurator/capsense-configurator*. In this case, after opening the application, select **File** > **Open** and open the *design.cycapsense* file of the respective application, which is present in the *{Application root directory}/bsps/TARGET_APP_\<BSP-NAME>/COMPONENT_BSP_DESIGN_MODUS* folder.
 
    See the [ModusToolbox&trade; CAPSENSE&trade; Configurator tool guide](https://www.infineon.com/ModusToolboxCapSenseConfig) for step-by-step instructions on how to configure and launch CAPSENSE&trade; in ModusToolbox&trade;.
 
@@ -345,11 +361,11 @@ Do the following to tune the proximity widget:
 
 6. Do the following in the **General** tab under the **Advanced** tab:
 
-   1. Select **CAPSENSE&trade; IMO Clock frequency** as **48 MHz**.
+   1. Select **CAPSENSE&trade; IMO Clock frequency** as **46 MHz**.
 
    2. Set the **Modulator clock divider** to **1** to obtain the maximum available modulator clock frequency as recommended in the [CAPSENSE&trade; design guide](https://www.infineon.com/AN85951).
 
-   3. Set the **Number of init sub-conversions** based on the hint shown when you hover over the edit box. Retain the default value (will be set in [Stage 3: Calculate and set the sense clock frequency and init sub-conversions](#stage-3-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
+   3. Set the **Number of init sub-conversions** based on the hint shown when you hover over the edit box. Retain the default value (will be set in [Stage 2: Calculate and set the sense clock frequency and init sub-conversions](#stage-2-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
 
    4. Use **Wake-on-Touch settings** to set the refresh rate and frame timeout while in lowest power mode (Wake-on-Touch mode).
 
@@ -361,20 +377,20 @@ Do the following to tune the proximity widget:
 
       **Note:** For tuning low-power widgets, **Number of frames in Wake-on-Touch** must be less than the  **Maximum number of raw counts in SRAM** based on the number of sensors in WoT mode as follows:
 
-      **Table 3. Maximum number of raw counts in SRAM**
+      **Table 2. Maximum number of raw counts in SRAM**
 
-      | Number of low <br> power widgets  | Maximum number of <br> raw counts in SRAM  |
-         |:---------------------| :-----|
-         | 1  | 245 |
-         | 2  | 117 |
-         | 3  | 74 |
-         | 4  | 53 |
-         | 5  | 40 |
-         | 6  | 31 |
-         | 7  | 25 |
-         | 8  | 21 |
+       Number of low <br> power widgets  | Maximum number of <br> raw counts in SRAM  |
+      :---------------------| :-----|
+       1  | 245 |
+       2  | 117 |
+       3  | 74 |
+       4  | 53 |
+       5  | 40 |
+       6  | 31 |
+       7  | 25 |
+       8  | 21 |
 
-   7. Retain the default settings for all regular and low-power widget filters. You can enable or update the filters later depending on the signal-to-noise ratio (SNR) requirements in [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-and-refresh-rate).
+   7. Retain the default settings for all regular and low-power widget filters. You can enable or update the filters later depending on the signal-to-noise ratio (SNR) requirements in [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate).
 
       Filters are used to reduce the peak-to-peak noise; however, using filters will result in a higher scan time.
 
@@ -417,9 +433,9 @@ Do the following to tune the proximity widget:
 
    - **Number of sub-conversions: 60**
 
-     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-and-refresh-rate).
+     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate).
 
-   - **Proximity Threshold:** 65535
+   - **Proximity threshold:** 65535
 
       Proximity threshold is set to the maximum to avoid the waking up of the device from WoT mode due to touch detection; this is required to find the signal and SNR. Change the 
       
@@ -427,9 +443,9 @@ Do the following to tune the proximity widget:
 
       Touch threshold is also set to the maximum to avoid the waking up of the device from WoT.
 
-   - **Noise Threshold:** 40
+   - **Noise threshold:** 40
 
-   - **Negative Noise Threshold:** 40
+   - **Negative noise threshold:** 40
 
    - **Low baseline reset:** 30
 
@@ -443,7 +459,7 @@ Do the following to tune the proximity widget:
 
    Now, select **LowPower0** from the left pane, and then set the following:
 
-   - **Sense clock divider:** Retain the default value (will be set in [Stage 3: Calculate and set the sense clock frequency and init sub-conversions](#stage-3-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
+   - **Sense clock divider:** Retain the default value (will be set in [Stage 2: Calculate and set the sense clock frequency and init sub-conversions](#stage-2-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
 
    - **Clock source:** Direct
 
@@ -451,15 +467,15 @@ Do the following to tune the proximity widget:
 
    - **Number of sub-conversions: 60**
 
-     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-and-refresh-rate).
+     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate).
 
-   - **Finger Threshold:** 65535
+   - **Finger threshold:** 65535
 
       Finger threshold is set to the maximum to avoid the waking up of the device from WoT mode due to touch detection so that you can acquire signal for SNR measurement.
 
-   - **Noise Threshold:** 10
+   - **Noise threshold:** 10
 
-   - **Negative Noise Threshold:** 10
+   - **Negative noise threshold:** 10
 
    - **Low baseline reset:** 10
 
@@ -477,7 +493,7 @@ Do the following to tune the proximity widget:
 
    2. Configure the scan slots using the **Auto-assign slots** option. The other option is to allot each sensor a scan slot based on the entered slot number.
 
-   3. Select Proximity0_Sns0 as **Ganged** under the **LowPower0** widget as shown in Figure 20.
+   3. Select Proximity0_Sns0 as **Ganged** under the **LowPower0** widget as shown in **Figure 20**.
 
    4. Check the notice list for warning or errors.
 
@@ -489,100 +505,44 @@ Do the following to tune the proximity widget:
 
 <br>
 
+### Stage 2: Calculate and set sense clock frequency
+-------------------------
 
-### Stage 2: Measure sensor parasitic capacitance (Cp)
-------------------
+The maximum frequency set should charge and discharge the sensor completely, which is verified using an oscilloscope and an active probe. To view the charging and discharging waveforms of the sensor, probe at the sensors (or as close as possible to the sensors), and not at the pins or resistor. See **Figure 21** and **Figure 22** for more deatils. You can also use a passive probe which will add an additional parasitic capacitance of around 15 pF; therefore, the tuning may be not optimal. These figures show the signals observed on shield.
 
-#### **Use an LCR meter to determine the Cp of the sensor**
+**Figure 21**  shows proper charging when sense clock frequency is correctly tuned i.e., the voltage is settling to the required voltage at the end of each phase. **Figure 22** shows incomplete settling (charging/discharing) and hence the sense clock divider is set to 28 as shown in **Figure 21**.
 
-Measure the Cp of the sensor electrode of the proximity sensor using an LCR meter. The Cp should be measured between the sensor electrode (sensor pin) and the device ground.
+ **Notes:** 
+   - If you are explicitly using the PRS or SSCx clock source to lower electromagnetic interference, ensure that you select the sense clock frequency that meets the conditions mentioned in the [ModusToolbox&trade; CAPSENSE&trade; configurator guide](https://www.infineon.com/dgdl/Infineon-ModusToolbox_CapSense_Configurator_Guide_(Version_2.0)-Software-v01_00-EN.pdf?fileId=8ac78c8c7e7124d1017ed9999c3b364d&utm_source=cypress&utm_medium=referral&utm_campaign=202110_globe_en_all_integration-files) in addition to the above conditions. PRS and SSCx techniques spread the frequency across a range.
 
-   **Table 4. Cp values obtained for CAPSENSE&trade; proximity loop in CY8CKIT-040T kit**
+   - Actual sense clock frequency value is chosen such that the divider is divisible by 4 to have all four scan phases for equal durations. 
 
-   | Kit     | Parasitic capacitance (Cp) in pF
-   |:---------------------|:----------------------------------------|
-   | CY8CKIT-040T (Pin P2.5) with shield  |     4 pF |
-   |CY8CKIT-040T (Shield Pin P3.0 and all Inactive sensors configured as shield) | 47 pF |
+The project uses max sense clock frequency by default. If an incomplete charging/discharging is observed (as in **Figure 22**), the sense clock divider is increased until the sensor and shield is fully charged/discharged.
+For tuning your board, ensure to charge/dischage by probing at both the sensor and shield.
+
+**Figure 21. Proper charge cycle of a sensor**
+
+   <img src="images/csdrm-waveform.png" alt="" width="400"/>
+
+   **Figure 22. Improper charge cycle of a sensor**
+
+   <img src="images/csdrm-waveform_improper.png" alt="" width="400"/>
+   
+Observe Point A and B marked in **Figure 21**, it is charging/discharging properly to VDD/2 whereas in **Figure 22**, it is not reaching to VDD/2.
+
+   Set the final value in the CAPSENSE&trade; configurator using the steps given in **Step 8** of **Stage 1**, which ensures the maximum possible sense clock frequency (for good gain) while allowing the sensor capacitance to fully charge and discharge in each phase of the MSCLP CSD sensing method.
+
+   The actual sense clock frequency value is chosen such that the divider is divisible by 4 in order to have all the four scan phases for equal duration.
+
+   **Table 3. Sense clock frequency settings for CY8CKIT-040T kit**
+
+   Development kit | Sense clock divider | 
+   :-------- |:-----------|
+   CY8CKIT-040T (Pin P2.5) | 28 |
 <br>
 
-**Note:** Here, all unused sensor electrodes are ganged to form the shield electrode. The total shield capacitance (Csh) is also calculated considering the individual parasitic capacitances of shield electrodes and inactive sensor electrodes.
-
-
-
-### Stage 3: Calculate and set the sense clock frequency
-------------------
-
-1. Calculate the maximum sense clock frequencies using **Equation 1** for the sensor and shield pins.
-
-   **Equation 1. Maximum sense clock frequency**
-
-   ![Maximum sense clock frequency](images/fsw-equation.png)
-
-   where,
-
-   - Cp is the parasitic capacitances of the electrodes. This value is obtained from [Stage 2: Measure sensor parasitic capacitance (Cp)](#stage-2-measure-sensor-parasitic-capacitance-cp).
-
-   - R<sub>SeriesTotal</sub> is the total series resistance, which includes the internal resistance, external series resistance (in CY8CKIT-040T, it is 560 ohm), and trace resistance. Include the trace resistance if high-resistive material such as ITO or conductive ink is used.
-   **Note:** The internal and trace resistance will be estimated in future release of this code example.
-
-2. Use **Equation 2** to obtain the **sense clock divider** value. It is obtained by dividing the **Modulator clock frequency** (48 MHz) by the calculated **Maximum sense clock frequency (kHz)**, and choosing the nearest ceiling sense clock divider option in the CAPSENSE&trade; Configurator. Use the largest of the sensor or shield **Sense clock divider**.
-
-   **Equation 2. Sense clock divider**
-
-   ![Sense clock divider](images/sense-clock-divider-equation.png)
-
-
-   However, because the internal series resistance is yet to be estimated, you can use another method to find the maximum sense clock frequency as follows:
-
-   1. Choose the sense clock frequency with an initial value (usually 6 MHz).
-
-   2. Probe the sensor and shield electrode with an active probe and an oscilloscope to confirm whether they are getting charged and discharged completely.
-
-   3.  Iteratively change the divider in multiple of 4 using the CAPSENSE™ Tuner and set a maximum frequency such that the electrodes completely charge and discharge in each phase of the MSCLP sensing method.
-
-       **Figure 21. Waveforms when sensors and shield are properly charging and discharging**
-
-       <img src="images/csdrm-waveform-charging-complete.png" alt="Figure 21" width="500"/>
-
-
-       **Table 5. Sense clock frequency settings for CY8CKIT-040T kit from Cp**
-
-       |Development kit | Cp of the electrode (pF) |  Maximum sense clock frequency (MHz)| Sense clock divider | Actual sense clock divider
-       | --- | --- | --- | --- | --- |
-       |CY8CKIT-040T (Pin P2.5) Sensor pin with shield| 4 |  11.52| 4.16 | 4 |
-       |CY8CKIT-040T (Pin P3.0 and other inactive sensors as shield )| 47 | 1.73 | 27.75 | 28 |
-
-
-       **Notes:**
-
-       - If you are explicitly using the PRS or SSCx clock source to lower the electromagnetic interference, ensure that you select the sense clock frequency that meets the conditions mentioned in the [ModusToolbox&trade; CAPSENSE&trade; Configurator guide](https://www.cypress.com/file/492896/download) in addition to the above conditions. PRS and SSCx techniques spread the frequency across a range.
-
-       - The actual sense clock frequency value is chosen such that the divider is divisible by 4 in order to have all the four scan phases for equal duration.
-
-       **Table 6. Sense clock frequency settings for CY8CKIT-040T kit**
-
-       |Development kit | Sense clock divider |
-       | --- | ---  |
-       |CY8CKIT-040T (Pin P2.5)|  28 |
-
-
-3. Program the board.
-
-4. Verify the auto-calibration.
-
-   Capture the raw counts of each sensor (as shown in Figure 22) and verify that they are approximately (+/- 5%) equal to 85% of the MaxCount. See [AN234231 – Achieving lowest-power capacitive sensing with PSoC&trade; 4000T](https://www.infineon.com/AN234231) for the MaxCount equation.
-
-   From the MaxCount equation we get the MaxCount for the current configuration as 65025 and since the calibration percentage is 85% thus raw count is 0.85 times MaxCount, which is 55271. 
-
-    **Figure 22. Verifying the raw count calibration level**
-
-    <img src="images/tuner-graph-view.png" alt="Figure 22"/>
-
-
-<br>
-
-### Stage 4: Fine-tune for required SNR, power, and refresh rate
------------------------
+### Stage 3: Fine-tune for required SNR, power, and refresh rate
+-------------------------
 
 1. Measure the SNR for the maximum proximity height as mentioned in the [Operation](#operation) section (45mm in this case) by placing your hand above the proximity loop, and perform sensor tuning until the minimum SNR of 5:1 and a signal count of at least 50 are achieved.
 
@@ -598,11 +558,11 @@ Measure the Cp of the sensor electrode of the proximity sensor using an LCR mete
 
       **Note:** Number of sub-conversions should be greater than or equal to 4.
 
-   3. Calculate the decimation rate using **Equation 3**. The resolution increases with an increase in the decimation rate; therefore, set the maximum decimation rate achieved.
+   3. Calculate the decimation rate using **Equation 1**. The resolution increases with an increase in the decimation rate; therefore, set the maximum decimation rate achieved.
 
-      **Equation 3. Decimation rate**
+      **Equation 1. Decimation rate**
 
-      ![Equation 3](images/decimation-equation.png)
+      ![](images/decimation-equation.png)
 
       **Note:** You cannot set the value of the decimation rate greater than 255. If the value of decimation rate from **Equation 2** is greater than 255, truncate it to 255.
 
@@ -628,10 +588,45 @@ Measure the Cp of the sensor electrode of the proximity sensor using an LCR mete
 
    2. Reprogram the device to update the filter settings.
 
+<br>
 
+### Stage 4: CDAC dither parameters
+-------------------------
+
+MSCLP uses CDAC dithering to reduce flat spots. The optimal polynomial and other parameters depend on the number of sub-conversions (N<sub>sub</sub>).
+
+The following macros show the recommended dither parameters in **main.c**:
+```
+#define	CDAC_DITHER_SCALE          0u
+
+#define	CDAC_DITHER_SEED           255u
+
+#define	CDAC_DITHER_POLY           142u
+```
+
+Table 4 shows the general recommended values of dither parameters based on N<sub>sub</sub> selection.
+
+**Table 4.  General recommendations for dither parameters**
+
+N<sub>sub</sub> Range | CDAC_Dither_poly| CDAC_Dither_Seed |  CDAC_Dither_scale
+:--- | :--- | :--- | :---
+8 to 12 | 9 | 15 | 1
+13 to 15 | 9 | 15 | 0
+16 to 23 | 18 | 31 | 1
+24 to 31 | 18 | 31 | 0
+32 to 41 | 33 | 63 | 1
+42 to 63 | 33 | 63 | 0
+64 to 84 | 65 | 127 | 1
+85 to 127 | 65 | 127 | 0
+128 to 174 | 142 | 255 | 1
+175 to 255 | 142 | 255 | 0
+\>255 | 142 | 255 | 0
+
+<br>
 
 ### Stage 5: Tune threshold parameters
---------------------
+-------------------------
+
 
 The software threshold is set for each widget based on the diff counts. Do the following in CAPSENSE&trade; Tuner to set up the threshold for a widget:
 
@@ -655,7 +650,7 @@ The software threshold is set for each widget based on the diff counts. Do the f
 
    - Hysteresis = 10 percent of the signal
 
-   - ON Debounce = 3
+   - ON debounce = 3
 
 4. For the LowPower0_Sns0 sensor, switch to the **SNR Measurement** tab and follow steps 10 and 11 in the [Monitor data using CAPSENSE&trade; Tuner](#monitor-data-using-capsensetrade-tuner) section.
 
@@ -669,9 +664,9 @@ The software threshold is set for each widget based on the diff counts. Do the f
 
    - Low baseline reset = 30
 
-   - ON Debounce = 1
+   - ON debounce = 1
 
-   **Note:** It is recommended to have ON debounce as '1'. Since we are reading the status signal of the proximity widget instead of the low power widget to turn on and off the status LEDs. Thus we dont require the debounce feature for the low power widget. However this is application specific and user can update it according to their needs.
+   **Note:** It is recommended to have ON debounce as '1'. Because we are reading the status signal of the proximity widget instead of the low-power widget to turn ON and OFF the status LEDs. Therofore, we don't require the debounce feature for the low-power widget. However, this is application-specific, and users can update it according to their needs.
 
 5. Set the threshold parameters in the **Widget/Sensor parameters** section of the CAPSENSE&trade; Tuner:
 
@@ -699,40 +694,32 @@ The software threshold is set for each widget based on the diff counts. Do the f
 
 8. Close the CAPSENSE&trade; Tuner and launch CAPSENSE&trade; Configurator. You should now see all the changes that you made in the CAPSENSE&trade; Tuner reflected in the CAPSENSE&trade; Configurator.
 
-   **Table 7. Software tuning parameters obtained based on sense for CY8CKIT-040T**
+   **Table 5. Software tuning parameters obtained based on sense for CY8CKIT-040T**
 
-   |Parameter | Proximity0 | LowPower0|
-   |:-------- |:-----------|:---------
-   |Proximity Signal | 350 |30 |
-   |Touch Signal | 8200 | NA |
-   |Proximity threshold | 280 |NA|
-   |Touch threshold | 6560 |24 |
-   |Noise threshold |140|12|
-   |Negative noise threshold |140 |12 |
-   |Low baseline reset | 30 |30 |
-   |Hysteresis | 35 |NA |
-   |ON debounce | 3|1|
+   Parameter | Proximity0 | LowPower0|
+   :-------- |:-----------|:---------
+   Proximity signal | 350 |30 |
+   Touch signal | 8200 | NA |
+   Proximity threshold | 280 |NA|
+   Touch threshold | 6560 |24 |
+   Noise threshold |140|12|
+   Negative noise threshold |140 |12 |
+   Low baseline reset | 30 |30 |
+   Hysteresis | 35 |NA |
+   ON debounce | 3|1|
 
    **Note:** For the low-power widget the touch threshold is the finger threshold.
 
+   </details>
+
+
+
+
 ## Debugging
 
-You can debug this project to step through the code. In the IDE, use the **\<Application Name> Debug (KitProg3_MiniProg4)** configuration in the **Quick Panel**. For more details, see the "Program and debug" section in the [Eclipse IDE for ModusToolbox&trade; user guide](https://www.cypress.com/MTBEclipseIDEUserGuide).
+You can debug the example to step through the code. In the IDE, use the **\<Application Name> Debug (KitProg3_MiniProg4)** configuration in the **Quick Panel**. For details, see the "Program and debug" section in the [Eclipse IDE for ModusToolbox&trade; software user guide](https://www.infineon.com/MTBEclipseIDEUserGuide).
 
-**Note:** The debug port is disabled by default for CY8CKIT-040T because it uses pins P3[2] (SWDIO) and P3[3] (SWDCK) for I2C SDA and SCL. If debug is required, do the following:
-
-   1. Enable **Debug Mode** under the **Systems** tab in the **Device Configurator** and change the **Debug Mode** setting to **SWD**.
-
-   2. Disable I2C in the project by disabling the **Serial Communication Block (SCB)** resource with **EZI2C** personality in the **Peripherals** tab in the **Device Configurator**.
-
-   3. Enable the `SWD_DEBUG_ENABLE` macro present in the *main.c* file as follows:
-      ```
-      #define SWD_DEBUG_ENABLE (1u)
-      ```
-
-   See Step 4 in Section 2.3 of the kit guide for more details.
-
-
+**Note:** The debug port is disabled by default for CY8CKIT-040T, because it uses the pins P3[2] (SWDIO) and P3[3] (SWDCK) for User LED. If debug is required, enable the **Debug** setting under the **Systems** tab in the Device Configurator and change the **Debug Mode** setting to **SWD**. Because User LED mode is multiplexed on the same pins, the user LED will not blink when debug is enabled.
 
 ## Design and implementation
 
@@ -742,7 +729,7 @@ Upon successful tuning of the system, it will be able to detect your hand when y
 
 There are two LEDs used in this project:
 
-- *LED1*: Touch status. Turns ON in blue color when your finger touches the proximity sensor and turns off when you remove your finger.
+- *LED1*: Touch status. Turns ON in blue color when your finger touches the proximity sensor and turns OFF when you remove your finger.
 
 - *LED3*: Proximity status. Turns ON in red color when your hand comes in the proximity detection range and turns OFF when the hand is moved away.
 
@@ -780,14 +767,14 @@ The MOSI pin of the SPI slave peripheral is used to transfer data to the three s
 
 <img src="images/spi-config.png" alt="Figure 31" width="800"/>
 
-**Table 8. Application resources**
+**Table 6. Application resources**
 
-| Resource  |  Alias/Object     |    Purpose     |
-| :------- | :------------    | :------------ |
-| SCB (I2C) (PDL) | CYBSP_EZI2C          | EZI2C slave driver to communicate with CAPSENSE&trade; Tuner |
-| SCB (SPI) (PDL) | CYBSP_MASTER_SPI          | SPI master driver to control serial LEDs |
-| CAPSENSE&trade; | CYBSP_MSC | CAPSENSE&trade; driver to interact with the MSC hardware and interface the CAPSENSE&trade; sensors |
-| Digital pin | CYBSP_SERIAL_LED | To show the proximity operation and power mode states|
+ Resource  |  Alias/Object     |    Purpose     |
+ :------- | :------------    | :------------ |
+ SCB (I2C) (PDL) | CYBSP_EZI2C          | EZI2C slave driver to communicate with CAPSENSE&trade; Tuner |
+ SCB (SPI) (PDL) | CYBSP_MASTER_SPI          | SPI master driver to control serial LEDs |
+ CAPSENSE&trade; | CYBSP_MSC | CAPSENSE&trade; driver to interact with the MSC hardware and interface the CAPSENSE&trade; sensors |
+ Digital pin | CYBSP_SERIAL_LED | To show the proximity operation and power mode states|
 
 </details>
 
@@ -805,20 +792,19 @@ The MOSI pin of the SPI slave peripheral is used to transfer data to the three s
 
 Resources  | Links
 -----------|----------------------------------
-Application notes  | [AN79953](https://www.infineon.com/AN79953) – Getting started with PSoC&trade; 4 <br>  [AN85951](https://www.infineon.com/AN85951) – PSoC&trade; 4 and PSoC&trade; 6 MCU CAPSENSE&trade; design guide <br>  [AN234231](https://www.infineon.com/AN234231) – Achieving lowest-power capacitive sensing with PSoC&trade; 4000T
+Application notes  | [AN79953](https://www.infineon.com/dgdl/Infineon-AN79953_Getting_Started_with_PSoC_4-ApplicationNotes-v21_00-EN.pdf?fileId=8ac78c8c7cdc391c017d07271fd64bc1) – Getting started with PSoC&trade; 4
 Code examples  | [Using ModusToolbox&trade; software](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
-Device documentation |  [PSoC&trade; 4 datasheets](https://www.cypress.com/search/all/PSOC%204%20datasheets?sort_by=search_api_relevance&f%5B0%5D=meta_type%3Atechnical_documents) <br>[PSoC&trade; 4 technical reference manuals](https://www.cypress.com/search/all/PSoC%204%20Technical%20Reference%20Manual?sort_by=search_api_relevance&f%5B0%5D=meta_type%3Atechnical_documents)
-Development kits | Select your kits from the [Evaluation Board Finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board) page.
-Libraries on GitHub  | [mtb-pdl-cat2](https://github.com/Infineon/mtb-pdl-cat2) –  PSoC&trade; 4 Peripheral Driver Library (PDL) <br>  [mtb-hal-cat2](https://github.com/Infineon/mtb-hal-cat2)  – Hardware Abstraction Layer (HAL) library
-Middleware on GitHub  | [capsense](https://github.com/Infineon/capsense) – CAPSENSE&trade; library and documents
-Tools | [Eclipse IDE for ModusToolbox&trade; software](https://www.cypress.com/modustoolbox) –  ModusToolbox&trade; software is a collection of easy-to-use software and tools enabling rapid development with Infineon MCUs, covering applications from embedded sense and control to wireless and cloud-connected systems using AIROC&trade; Wi-Fi and Bluetooth® connectivity devices.
-<br>
+Device documentation | [PSoC&trade; 4 datasheets](https://www.infineon.com/cms/en/search.html#!view=downloads&term=psoc4&doc_group=Data%20Sheet) <br />[PSoC&trade; 4 technical reference manuals](https://www.infineon.com/cms/en/search.html#!view=downloads&term=psoc4&doc_group=Additional%20Technical%20Information)
+Development kits | Select your kits from the [evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board) page.
+Libraries on GitHub  | [mtb-pdl-cat2](https://github.com/Infineon/mtb-pdl-cat2) – PSoC&trade; 4 peripheral driver library (PDL) <br>  [mtb-hal-cat2](https://github.com/Infineon/mtb-hal-cat2) – Hardware abstraction layer (HAL) library
+Middleware on GitHub  | [capsense](https://github.com/Infineon/capsense) – CAPSENSE&trade; library and documents <br> [psoc4-middleware](https://github.com/Infineon/psoc4-middleware) – Links to all PSoC&trade; 4 middleware
+Tools | [Eclipse IDE for ModusToolbox&trade; software](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use software and tools enabling rapid development with Infineon MCUs, covering applications from embedded sense and control to wireless and cloud-connected systems using AIROC&trade; Wi-Fi and Bluetooth® connectivity devices.
 
+<br>
 
 ## Other resources
 
 Infineon provides a wealth of data at www.infineon.com to help you select the right device, and quickly and effectively integrate it into your design.
-
 
 ## Document history
 
@@ -827,14 +813,14 @@ Document title: *CE236033* – *PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power p
  Version | Description of change
  ------- | ---------------------
  1.0.0   | New code example
+ 1.1.0   | Minor folder structure changes that doesn't break backward compatibility
 
-
-
+ <br>
 
 ---------------------------------------------------------
 
-© Cypress Semiconductor Corporation, 2022. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress’s patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
-<br>
+© Cypress Semiconductor Corporation, 2023. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress’s patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br />
 TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress’s published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
-<br>
-Cypress, the Cypress logo, and combinations thereof, WICED, ModusToolbox, PSoC, CapSense, EZ-USB, F-RAM, and Traveo are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit cypress.com. Other names and brands may be claimed as property of their respective owners.
+<br />
+Cypress, the Cypress logo, and combinations thereof, WICED, ModusToolbox, PSoC, CapSense, EZ-USB, F-RAM, and Traveo are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.
