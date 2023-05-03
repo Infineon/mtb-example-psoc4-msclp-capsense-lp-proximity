@@ -142,12 +142,12 @@
                 <Property id="COMP_DIV" value="28"/>
                 <Property id="MP_TX_ORDER" value="1"/>
                 <Property id="MP_ROW_ORDER" value="1"/>
-                <Property id="FINGER_TH" value="280"/>
-                <Property id="PROX_TOUCH_TH" value="6560"/>
-                <Property id="NOISE_TH" value="140"/>
-                <Property id="NNOISE_TH" value="140"/>
+                <Property id="FINGER_TH" value="391"/>
+                <Property id="PROX_TOUCH_TH" value="7168"/>
+                <Property id="NOISE_TH" value="196"/>
+                <Property id="NNOISE_TH" value="196"/>
                 <Property id="LOW_BSLN_RST" value="30"/>
-                <Property id="HYSTERESIS" value="35"/>
+                <Property id="HYSTERESIS" value="49"/>
                 <Property id="ON_DEBOUNCE" value="3"/>
                 <Property id="VELOCITY" value="2500"/>
                 <Property id="IIR_FILTER" value="false"/>
@@ -215,7 +215,7 @@
             <Electrodes>
                 <Electrode id="Sns0" kind="Sensor">
                     <ElectrodeProperties>
-                        <Property id="CDAC0" value="116"/>
+                        <Property id="CDAC0" value="124"/>
                         <Property id="CDAC1" value="32"/>
                         <Property id="CDAC2" value="32"/>
                         <Property id="PINS" value="Dedicated pin"/>
@@ -252,11 +252,11 @@
                 <Property id="COMP_DIV" value="28"/>
                 <Property id="MP_TX_ORDER" value="1"/>
                 <Property id="MP_ROW_ORDER" value="1"/>
-                <Property id="FINGER_TH" value="65535"/>
+                <Property id="FINGER_TH" value="33"/>
                 <Property id="PROX_TOUCH_TH" value="200"/>
-                <Property id="NOISE_TH" value="10"/>
-                <Property id="NNOISE_TH" value="10"/>
-                <Property id="LOW_BSLN_RST" value="10"/>
+                <Property id="NOISE_TH" value="16"/>
+                <Property id="NNOISE_TH" value="16"/>
+                <Property id="LOW_BSLN_RST" value="30"/>
                 <Property id="HYSTERESIS" value="10"/>
                 <Property id="ON_DEBOUNCE" value="1"/>
                 <Property id="VELOCITY" value="2500"/>
@@ -325,7 +325,7 @@
             <Electrodes>
                 <Electrode id="Sns0" kind="Sensor">
                     <ElectrodeProperties>
-                        <Property id="CDAC0" value="245"/>
+                        <Property id="CDAC0" value="254"/>
                         <Property id="CDAC1" value="32"/>
                         <Property id="CDAC2" value="32"/>
                         <Property id="PINS" value="Proximity0_Sns0"/>

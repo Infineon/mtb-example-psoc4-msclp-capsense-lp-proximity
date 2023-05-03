@@ -6,7 +6,7 @@ This document also explains how to manually tune the low-power widget for optimu
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-lp-proximity)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6IndhaW5nYW5rYXIiLCJEb2MgdmVyc2lvbiI6IjEuMS4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6IndhaW5nYW5rYXIiLCJEb2MgdmVyc2lvbiI6IjEuMi4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
 
 
 ## Requirements
@@ -278,7 +278,6 @@ The project already has the necessary settings by default, so you can go to [Ope
       **Figure 11. CAPSENSE&trade; update proximity and touch threshold**
 
       <img src="images/tuner-threshold-update-proximity.png" alt="Figure 11" width="750"/>
-**Note:** We are currently having an issue in the CAPSENSE&trade; Tuner which is preventing the threshold values to be applied in the device. Although the tuner acknowledges that the configuration is applied to the device but it seems the thresholds didnt get applied. To overcome this problem use the CAPSENSE&trade; Configurator to set the thresholds as shown in **Step 8** of [Set initial hardware parameters](#stage-1-set-initial-hardware-parameters). This issue will be resolved in the upcoming version of the CE.
 
 13. Repeat steps 10 and 11 to observe the SNR and signal as Figure 12 shows.
 
@@ -322,11 +321,11 @@ Do the following to tune the proximity widget:
 
 - [Stage 2: Calculate and set sense clock frequency](#stage-2-calculate-and-set-sense-clock-frequency)
 
-- [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-4-fine-tune-for-required-snr-power-refersh-rate)
+- [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate)
 
-- [Stage 4: CDAC dither parameters](#stage-5-cdac-dither-parameters)
+- [Stage 4: CDAC dither parameters](#stage-4-cdac-dither-parameters)
 
-- [Stage 5: Tune threshold parameters](#stage-6-tune-threshold-parameters)
+- [Stage 5: Tune threshold parameters](#stage-5-tune-threshold-parameters)
 
 ### Stage 1: Set initial hardware parameters
 -------------------------
@@ -343,7 +342,7 @@ Do the following to tune the proximity widget:
 
    <img src="images/device-configurator.png" alt="Figure 14"/>
 
-   Save th7e changes and close the window.
+   Save the changes and close the window.
 
 4. Launch the CAPSENSE&trade; Configurator tool.
 
@@ -365,7 +364,7 @@ Do the following to tune the proximity widget:
 
    2. Set the **Modulator clock divider** to **1** to obtain the maximum available modulator clock frequency as recommended in the [CAPSENSE&trade; design guide](https://www.infineon.com/AN85951).
 
-   3. Set the **Number of init sub-conversions** based on the hint shown when you hover over the edit box. Retain the default value (will be set in [Stage 2: Calculate and set the sense clock frequency and init sub-conversions](#stage-2-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
+   3. Set the **Number of init sub-conversions** based on the hint shown when you hover over the edit box. Retain the default value (will be set in [Stage 2: Calculate and set sense clock frequency](#stage-2-calculate-and-set-sense-clock-frequency))
 
    4. Use **Wake-on-Touch settings** to set the refresh rate and frame timeout while in lowest power mode (Wake-on-Touch mode).
 
@@ -425,7 +424,7 @@ Do the following to tune the proximity widget:
 
    Select **Proximity0** from the left pane, and then set the following:
 
-   - **Sense clock divider:** Retain the default value (will be set in [Stage 3: Calculate and set the sense clock frequency and init sub-conversions](#stage-3-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
+   - **Sense clock divider:** Retain the default value (will be set in [Stage 2: Calculate and set sense clock frequency](#stage-2-calculate-and-set-sense-clock-frequency))
 
    - **Clock source:** Direct
 
@@ -433,7 +432,7 @@ Do the following to tune the proximity widget:
 
    - **Number of sub-conversions: 60**
 
-     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 4: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate).
+     60 is a good starting point to ensure a fast scan time and sufficient signal. This value will be adjusted as required in [Stage 3: Fine-tune for required SNR, power, and refresh rate](#stage-3-fine-tune-for-required-snr-power-and-refresh-rate).
 
    - **Proximity threshold:** 65535
 
@@ -459,7 +458,7 @@ Do the following to tune the proximity widget:
 
    Now, select **LowPower0** from the left pane, and then set the following:
 
-   - **Sense clock divider:** Retain the default value (will be set in [Stage 2: Calculate and set the sense clock frequency and init sub-conversions](#stage-2-calculate-and-set-sense-clock-frequency-and-init-sub-conversions))
+   - **Sense clock divider:** Retain the default value (will be set in [Stage 2: Calculate and set sense clock frequency](#stage-2-calculate-and-set-sense-clock-frequency))
 
    - **Clock source:** Direct
 
@@ -698,21 +697,21 @@ The software threshold is set for each widget based on the diff counts. Do the f
 
    Parameter | Proximity0 | LowPower0|
    :-------- |:-----------|:---------
-   Proximity signal | 350 |30 |
-   Touch signal | 8200 | NA |
-   Proximity threshold | 280 |NA|
-   Touch threshold | 6560 |24 |
-   Noise threshold |140|12|
-   Negative noise threshold |140 |12 |
+   Proximity signal | 481 |41 |
+   Touch signal | 8960 | NA |
+   Proximity threshold | 391 |33|
+   Touch threshold | 7168 |NA |
+   Noise threshold |196|16|
+   Negative noise threshold |196 |16 |
    Low baseline reset | 30 |30 |
-   Hysteresis | 35 |NA |
+   Hysteresis | 49 |NA |
    ON debounce | 3|1|
 
    **Note:** For the low-power widget the touch threshold is the finger threshold.
 
    </details>
 
-
+<br>
 
 
 ## Debugging
@@ -814,6 +813,7 @@ Document title: *CE236033* – *PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power p
  ------- | ---------------------
  1.0.0   | New code example
  1.1.0   | Minor folder structure changes that doesn't break backward compatibility
+ 1.2.0   | Minor README and configuration update
 
  <br>
 
