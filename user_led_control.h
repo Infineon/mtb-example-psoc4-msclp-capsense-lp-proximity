@@ -1,10 +1,9 @@
 /******************************************************************************
-* File Name: SpiMaster.h
+* File Name: user_led_control.h
 *
-* Description: This file contains all the function prototypes required for
-*              SPI Master implemented using Serial Communication Block (SCB)
+* Description: This file contains all the function prototypes of
+*              LED data packets for SPI master.
 *
-*******************************************************************************
 * Copyright 2021-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
@@ -36,37 +35,61 @@
 * of such system or application assumes all risk of such use and in doing
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
-#ifndef SOURCE_SPIMASTER_H_
-#define SOURCE_SPIMASTER_H_
+#ifndef SOURCE_USER_LED_CONTROL_H_
+#define SOURCE_USER_LED_CONTROL_H_
 
-#include "cy_pdl.h"
-#include "cycfg.h"
+#include "user_spi.h"
 
 /*******************************************************************************
- * Macros
- ******************************************************************************/
-/* Initialization status */
-#define INIT_SUCCESS            (0)
-#define INIT_FAILURE            (1)
+* Macros
+*******************************************************************************/
+#define NUM_OF_LEDS                 (3u)
+#define NUM_OF_LED_COLORS           (3u)
+#define NUM_OF_BITS_PER_COLOR       (8u)
 
-/* Element index in the packet */
-#define PACKET_SOP_POS          (0UL)
-#define PACKET_CMD_POS          (1UL)
-#define PACKET_EOP_POS          (2UL)
+/* Number of bits to be transmitted on SPI for each bit of LED color */
+#define TX_BITS_PER_LED_COLOR_BIT   (4u)
 
-/* TX Packet Head and Tail */
-#define PACKET_SOP          (0x01UL)
-#define PACKET_EOP          (0x17UL)
+#define LED_RESET_INTERVAL_BITS     (8u)
 
-/* Assign SPI interrupt priority */
-#define CYBSP_MASTER_SPI_INTR_PRIORITY  (0U)
+/* Number of bits to be transmitted on SPI for each LED color*/
+#define TX_BITS_PER_LED_COLOR       (NUM_OF_BITS_PER_COLOR * TX_BITS_PER_LED_COLOR_BIT)
 
-/***************************************
-*         Function Prototypes
-****************************************/
-uint32_t init_spi_master(void);
-cy_en_scb_spi_status_t send_packet(uint8_t *, uint32_t);
+/* Number of bits to be transmitted on SPI for each LED (all 3 colors)*/
+#define TX_BITS_PER_LED             (NUM_OF_LED_COLORS * TX_BITS_PER_LED_COLOR)
 
-#endif /* SOURCE_SPIMASTER_H_ */
+/* Number of bytes per packets to be transmitted on SPI for all 3 LEDs*/
+#define LED_BYTES_PER_PACKET        (((TX_BITS_PER_LED * NUM_OF_LEDS) + LED_RESET_INTERVAL_BITS))/(8u)
+
+#define LED_STATE_OFF               (8u)
+#define LED_STATE_ON                (14u)
+
+#define LED1                        (0u)
+#define LED2                        (1u)
+#define LED3                        (2u)
+
+/*******************************************************************************
+* RGB LED context
+*******************************************************************************/
+typedef struct ledData
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+} ledData_t;
+
+/* serial LED context structure  */
+typedef struct serialLedContext
+{
+    ledData_t serialLedData[NUM_OF_LEDS];
+} serialLedContext_t;
+
+
+/*******************************************************************************
+* Function Prototypes
+*******************************************************************************/
+void ProcessSerialLed(serialLedContext_t *);
+
+#endif /* SOURCE_USER_LED_CONTROL_H_ */
 
 /* [] END OF FILE */

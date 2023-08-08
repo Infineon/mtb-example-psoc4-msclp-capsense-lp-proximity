@@ -1,9 +1,10 @@
 /******************************************************************************
-* File Name: LEDcontrol.h
+* File Name: user_spi.h
 *
-* Description: This file contains all the function prototypes of
-*              LED data packets for SPI master.
+* Description: This file contains all the function prototypes required for
+*              SPI Master implemented using Serial Communication Block (SCB)
 *
+*******************************************************************************
 * Copyright 2021-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
@@ -35,45 +36,37 @@
 * of such system or application assumes all risk of such use and in doing
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
-#ifndef SOURCE_LEDCONTROL_H_
-#define SOURCE_LEDCONTROL_H_
+#ifndef SOURCE_USER_SPI_H_
+#define SOURCE_USER_SPI_H_
 
 #include "cy_pdl.h"
-#include "cybsp.h"
 #include "cycfg.h"
-#include "SpiMaster.h"
 
 /*******************************************************************************
-* Macros
-*******************************************************************************/
-#define LED1                    (0u)
-#define LED2                    (1u)
-#define LED3                    (2u)
+ * Macros
+ ******************************************************************************/
+/* Initialization status */
+#define INIT_SUCCESS            (0)
+#define INIT_FAILURE            (1)
 
-/*******************************************************************************
-* RGB LED context
-*******************************************************************************/
-typedef struct stc_serial_led_param
-{
-    uint8_t color_red, color_green, color_blue;
-} stc_serial_led_param_t;
+/* Element index in the packet */
+#define PACKET_SOP_POS          (0UL)
+#define PACKET_CMD_POS          (1UL)
+#define PACKET_EOP_POS          (2UL)
 
+/* TX Packet Head and Tail */
+#define PACKET_SOP          (0x01UL)
+#define PACKET_EOP          (0x17UL)
 
-/* serial LED context structure  */
-typedef struct stc_serial_led_context
-{
-    stc_serial_led_param_t led_num[3u];
-} stc_serial_led_context_t;
+/* Assign SPI interrupt priority */
+#define CYBSP_MASTER_SPI_INTR_PRIORITY  (0U)
 
+/***************************************
+*         Function Prototypes
+****************************************/
+uint32_t InitSpiMaster(void);
+cy_en_scb_spi_status_t SendSpiPacket(uint8_t *, uint32_t);
 
-/*******************************************************************************
-* Function Prototypes
-*******************************************************************************/
-void serial_led_packets(uint8_t, uint8_t, uint8_t, uint8_t);
-void LED_serial_data_tranfer(uint8_t, uint8_t, uint8_t);
-void serial_led_control(stc_serial_led_context_t *);
-uint32_t led_byte_to_binary_conversion(uint8_t);
-
-#endif /* SOURCE_LEDCONTROL_H_ */
+#endif /* SOURCE_USER_SPI_H_ */
 
 /* [] END OF FILE */

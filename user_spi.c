@@ -1,5 +1,5 @@
 /*******************************************************************************
- * File Name:   SpiMaster.c
+ * File Name:   user_spi.c
  *
  * Description: This file contains function definitions for SPI Master.
  *
@@ -36,29 +36,29 @@
 * so agrees to indemnify Cypress against all liability.
  ******************************************************************************/
 
-#include "SpiMaster.h"
+#include "user_spi.h"
 
 /*******************************************************************************
  * Global Variables
  ******************************************************************************/
-cy_stc_scb_spi_context_t CYBSP_MASTER_SPI_context;
+cy_stc_scb_spi_context_t UserSpiContext;
 
 
 /*******************************************************************************
- * Function Name: CYBSP_MASTER_SPI_Interrupt
+ * Function Name: UserSpiInterrupt
  *******************************************************************************
  *
  * Invokes the Cy_SCB_SPI_Interrupt() PDL driver function.
  *
  ******************************************************************************/
-void CYBSP_MASTER_SPI_Interrupt(void)
+void UserSpiInterrupt(void)
 {
-    Cy_SCB_SPI_Interrupt(CYBSP_MASTER_SPI_HW, &CYBSP_MASTER_SPI_context);
+    Cy_SCB_SPI_Interrupt(CYBSP_MASTER_SPI_HW, &UserSpiContext);
 }
 
 
 /*******************************************************************************
- * Function Name: init_spi_master
+ * Function Name: InitSpiMaster
  *******************************************************************************
  *
  * Summary:
@@ -73,14 +73,14 @@ void CYBSP_MASTER_SPI_Interrupt(void)
  * Otherwise it returns INIT_FAILURE
  *
  ******************************************************************************/
-uint32_t init_spi_master(void)
+uint32_t InitSpiMaster(void)
 {
     cy_en_scb_spi_status_t result;
-    cy_en_sysint_status_t sysSpistatus;
+    cy_en_sysint_status_t sysSpiStatus;
 
     /* Configure the SPI block */
 
-    result = Cy_SCB_SPI_Init(CYBSP_MASTER_SPI_HW, &CYBSP_MASTER_SPI_config, &CYBSP_MASTER_SPI_context);
+    result = Cy_SCB_SPI_Init(CYBSP_MASTER_SPI_HW, &CYBSP_MASTER_SPI_config, &UserSpiContext);
     if ( result != CY_SCB_SPI_SUCCESS)
     {
         return INIT_FAILURE;
@@ -98,9 +98,9 @@ uint32_t init_spi_master(void)
     };
 
     /* Hook interrupt service routine and enable interrupt */
-    sysSpistatus = Cy_SysInt_Init(&CYBSP_MASTER_SPI_SCB_IRQ_cfg, &CYBSP_MASTER_SPI_Interrupt);
+    sysSpiStatus = Cy_SysInt_Init(&CYBSP_MASTER_SPI_SCB_IRQ_cfg, &UserSpiInterrupt);
 
-    if (sysSpistatus != CY_SYSINT_SUCCESS)
+    if (sysSpiStatus != CY_SYSINT_SUCCESS)
     {
         return INIT_FAILURE;
     }
@@ -116,11 +116,12 @@ uint32_t init_spi_master(void)
 
 
 /*******************************************************************************
- * Function Name: send_packet
+ * Function Name: SendSpiPacket
  *******************************************************************************
  *
  * Summary:
- * This function sends the data to the slave.
+ * This function sends the data to the SPI slave. Its a blocking function, waits
+ * till transfer is complete successfully
  *
  * Parameters:
  * txBuffer - Pointer to the transmit buffer
@@ -131,17 +132,17 @@ uint32_t init_spi_master(void)
  * successfully. Otherwise it returns the error status
  *
  ******************************************************************************/
-cy_en_scb_spi_status_t send_packet(uint8_t *txBuffer, uint32_t transferSize)
+cy_en_scb_spi_status_t SendSpiPacket(uint8_t *txBuffer, uint32_t transferSize)
 {
     cy_en_scb_spi_status_t masterStatus;
 
     /* Initiate SPI Master write transaction. */
     masterStatus = Cy_SCB_SPI_Transfer(CYBSP_MASTER_SPI_HW, txBuffer, NULL,
-                                        transferSize, &CYBSP_MASTER_SPI_context);
+                                        transferSize, &UserSpiContext);
 
    /* Blocking wait for transfer completion */
     while (0UL != (CY_SCB_SPI_TRANSFER_ACTIVE &
-                Cy_SCB_SPI_GetTransferStatus(CYBSP_MASTER_SPI_HW, &CYBSP_MASTER_SPI_context)))
+                Cy_SCB_SPI_GetTransferStatus(CYBSP_MASTER_SPI_HW, &UserSpiContext)))
     {
 
     }
