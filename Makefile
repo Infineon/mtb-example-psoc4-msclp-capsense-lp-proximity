@@ -35,17 +35,19 @@
 # PROJECT     -- Project Makefile under Application
 #
 MTB_TYPE=COMBINED
+
 # Target board/hardware (BSP).
 # To change the target, it is recommended to use the Library manager
-# ('make library-manager' from command line), which will also update Eclipse IDE launch 
-# configurations. 
+# ('make library-manager' from command line), which will also update Eclipse IDE launch
+# configurations.
+
 TARGET=CY8CKIT-040T
 
 # Name of application (used to derive name of final linked file).
 #
 # If APPNAME is edited, ensure to update or regenerate launch
 # configurations for your IDE.
-APPNAME=mtb-example-psoc4-msclp-capsense-lp-proximity
+APPNAME=mtb-example-psoc4-msclp-low-power-proximity-rgbled
 
 # Name of toolchain to use. Options include:
 #
@@ -84,7 +86,7 @@ VERBOSE=
 # ... then code in directories named COMPONENT_foo and COMPONENT_bar will be
 # added to the build
 #
-COMPONENTS=
+COMPONENTS=APP
 
 # Like COMPONENTS, but disable optional code that was enabled by default.
 DISABLE_COMPONENTS=

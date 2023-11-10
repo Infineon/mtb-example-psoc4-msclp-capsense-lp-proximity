@@ -74,7 +74,7 @@ void ProcessSerialLed(serialLedContext_t * ptr_ledContext)
     ledTxBuffer[0u] = 0u; /* LED frame reset byte */
     ledTxBuffer[1u] = 0u;
 
-    /* Process each LED */
+    /* Process for each LED */
     for(ledIndex = 0u; ledIndex < NUM_OF_LEDS; ledIndex++)
     {
         /* Process each colors */

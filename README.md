@@ -1,13 +1,10 @@
 # PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power proximity tuning
 
-This code example demonstrates an implementation of a low-power proximity sensing application for maximum proximity sensing at the largest distance to detect a target (a hand). It includes recommended power states and transitions, adjustments for tuning parameters, and the method of tuning. This example uses a proximity widget in multi-sense CAPSENSE&trade; low-power (MSCLP - 5th-generation low-power CAPSENSE&trade;) to demonstrate different considerations for implementing a low-power design.
+This code example demonstrates an implementation of a low-power proximity sensing application for maximum proximity target sensing (a hand). It includes recommended power states and transitions, adjustments for tuning parameters, and the method of tuning. This example uses a proximity widget in CAPSENSE&trade; low-power (MSCLP - 5th-generation low-power CAPSENSE&trade;) to demonstrate a low-power design.
 
-This document also explains how to manually tune the low-power widget for optimum performance and the largest distance with respect to parameters such as power consumption and response time using the CSD-RM sensing technique and CAPSENSE&trade; Tuner.
+[View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc4-msclp-low-power-proximity-rgbled)
 
-[View this README on GitHub.](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-lp-proximity)
-
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6Im1heXVyIGNoYW5kYWsiLCJEb2MgdmVyc2lvbiI6IjEuNC4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
-
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzYwMzMiLCJTcGVjIE51bWJlciI6IjAwMi0zNjAzMyIsIkRvYyBUaXRsZSI6IlBTb0MmdHJhZGU7IDQ6IE1TQ0xQIENBUFNFTlNFJnRyYWRlOyBsb3ctcG93ZXIgcHJveGltaXR5IHR1bmluZyIsInJpZCI6Im1heXVyIGNoYW5kYWsiLCJEb2MgdmVyc2lvbiI6IjEuNS4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
 
 ## Requirements
 
@@ -28,7 +25,7 @@ This document also explains how to manually tune the low-power widget for optimu
 
 ## Hardware setup
 
-This example uses the board's default configuration. See the kit user guide to ensure that the board is configured correctly.
+This example uses the board's default configuration. See the [kit user guide](www.infineon.com/002-34472) to ensure that the board is configured correctly to use VDDA at 1.8 V
 
 ## Software setup
 
@@ -170,12 +167,19 @@ The project already has the necessary settings by default, so you can go to [Ope
       make program TARGET=CY8CKIT-040T TOOLCHAIN=GCC_ARM
       ```
    </details>
+   <br>
 
 3. After programming, the application starts automatically.
 
-4. To test the application, hover your hand on top of the CAPSENSE&trade; proximity sensor and notice that LED1 turns ON with **GREEN** color and turns OFF when the hand is moved away. In this case, the maximum distance the proximity sensor can sense is 45 mm. 
+   > **Note:** After programming, you see the following error message if debug mode is disabled. This can be ignored or enabling debug solves this error.
 
-   It can also detect a touch. When you touch the sensor (outer loop), the LED2 turns ON with the color **BLUE** and turns OFF when you remove the touch.
+   ``` c
+   "Error: Error connecting Dp: Cannot read IDR"
+   ```
+
+4. To test the application, hover a hand on top of the CAPSENSE&trade; proximity sensor and notice that LED1 turns ON with **GREEN** color and turns OFF when the hand is moved away. In this case, the maximum distance the proximity sensor can sense an object is 45 mm. 
+
+   The sensor can also detect a touch. When the sensor is touched, the LED1 turns ON with the color **BLUE**.
 
    **Figure 2. LED1 turns GREEN upon hovering the hand on top of the sensor**
 
@@ -187,10 +191,9 @@ The project already has the necessary settings by default, so you can go to [Ope
     Scenario  | LED  | Color  |
    :------------------| :-----| :-----|
     Hand in proximity  | LED1 |GREEN  |
-    Touch  | LED2 | BLUE |
+    Touch  | LED1 | BLUE |
 
    <br>
-
 
 ### Monitor data using CAPSENSE&trade; Tuner
 
@@ -248,17 +251,17 @@ The project already has the necessary settings by default, so you can go to [Ope
 
     <img src="images/tuner-acquire-noise.png" alt="Figure 8" width="750"/>
 
-      **Note:** Because the scan refresh rate is lower in **ALR** mode, it takes more time to acquire noise. Touch the CAPSENSE&trade; proximity loop once before clicking **Acquire noise** to transition the device to **ACTIVE** mode to complete the measurement faster.
+      >**Note:** Because the scan refresh rate is lower in **ALR** mode, it takes more time to acquire noise. Touch the CAPSENSE&trade; proximity loop once before clicking **Acquire noise** to transition the device to **ACTIVE** mode to complete the measurement faster.
 
-10. Once noise is acquired, bring your hand near the proximity loop at a distance of around **35 mm** above it and then click **Acquire signal**. Ensure that the hand remains above the proximity loop as long as the signal acquisition is in progress. Observe that the SNR is above 5:1 and the signal count is above 50. If not, repeat signal acquisition by lowering the hand, and thus getting a higher signal.
-
-    The maximum distance the proximity loop can sense is when the SNR is greater than 5:1 for a particular configuration. In the [Tuning procedure](#tuning-procedure) section, you can understand how changing the configuration affects the distance and SNR.
+10. Once noise is acquired, bring your hand over the proximity loop at a distance of around **45 mm** above it and then click **Acquire signal**. Ensure that the hand remains stable above the proximity loop as long as the signal acquisition is in progress. Observe that the SNR is above 5:1 and the signal count is above 50. If not, repeat signal acquisition by lowering the hand, and thus getting a higher signal.
 
     The calculated SNR on this proximity widget is displayed, as Figure 9 shows.
 
     **Figure 9. CAPSENSE&trade; Tuner - SNR measurement: acquire signal**
 
     <img src="images/tuner-acquire-signal.png" alt="Figure 9" width="750"/>
+
+    The maximum distance the proximity sensor can sense is at the distance where the SNR is greater than 5:1. [Tuning procedure](#tuning-procedure) section explains how changing the configuration affects the distance and SNR.
 
 11. To measure the SNR of the low-power sensor (**LowPower0_Sns0**), set the **Finger threshold** to maximum (65535) in **Widget/Sensor Parameters** for the **LowPower0** widget as shown in Figure 12. And set the Proximity threshold and Proximity Touch Threshold to their maximum (65535) values in the Widget/Sensor Parameters of the Proximity0 widget, as shown in Figure 13.
 
@@ -281,14 +284,19 @@ The project already has the necessary settings by default, so you can go to [Ope
 
        <img src="images/tuner-lowpower-snr.png" alt="Figure 12" width="750"/>
 
+       <br>
 
 ### Current consumption
 
 Follow the instructions in the **Measure current at different power modes** section of the code example [PSoC™ 4: MSCLP CAPSENSE™ low power](https://github.com/Infineon/mtb-example-psoc4-msclp-capsense-low-power) to measure the current consumption.
 
+# Operation at other voltages
+
+[CY8CKIT-040T kit](https://www.infineon.com/CY8CKIT-040T) supports operating voltages of 1.8 V, 3.3 V, and 5 V. Use voltage selection switch available on top of the kit to set the preferred operating voltage and see the [setup the VDDA supply voltage and Debug mode](#set-up-the-vdda-supply-voltage-and-debug-mode-in-device-configurator) section .
+
+This application functionalities are optimally tuned for 1.8 V. However, you can observe the basic functionalities working across other voltages. It is recommended to tune application at the preferred voltages for optimum performance.
 
 ## Tuning procedure
-
 
 <details><summary><b> Create custom BSP for your board </b></summary>
 
@@ -370,9 +378,9 @@ Do the following to tune the proximity widget:
 
       For example, to get 10 seconds as the maximum time in WoT mode, set **Number of frames in Wake-on-Touch** to **160** for the scan interval set as 63 ms.
 
-      **Note:** For tuning low-power widgets, **Number of frames in Wake-on-Touch** must be less than the  **Maximum number of raw counts in SRAM** based on the number of sensors in WoT mode as follows:
+      **Note:** For tuning low-power widgets, **Number of frames in Wake-on-Touch** must be less than the  **Maximum number of raw counts values in SRAM** based on the number of sensors in WoT mode as follows:
 
-      **Table 2. Maximum number of raw counts in SRAM**
+      **Table 2. Maximum number of raw counts values in SRAM**
 
        Number of low <br> power widgets  | Maximum number of <br> raw counts in SRAM  |
       :---------------------| :-----|
@@ -519,29 +527,30 @@ The steps to measure the C<sub>p</sub>/C<sub>m</sub> using BIST are as follows.
    
    <img src="images/bist_measurement.png" alt="Figure 280" width=700>
 
+   <br>
 
-   2.	Enable  ENABLE_BIST_CP_MEASUREMENT  macro in main.c as follows,which enable Cp measurement functionality.
-        ``` 
-         #define    ENABLE_BIST_CP_MEASUREMENT (1u)
-        ```
-   3.	Get the capacitance(C<sub>p</sub>/C<sub>m</sub>) by following these steps:
+   2.	Get the capacitance(C<sub>p</sub>/C<sub>m</sub>) by following these steps:
         - Add breakpoint at the function call "measure_sensor_capacitance()" function in main.c
         - Run the application in debug mode
         - Click **Step over** button once break point hits
-        - Add array variable sensor_capacitance to **Expressions view** tab, which holds the measured Cp values of sensors configured
+        - Add array variable 'sensor_capacitance' to **Expressions view** tab, which holds the measured Cp values of sensors configured
 
    **Figure 22. Measure C<sub>p</sub>/C<sub>m</sub> using BIST**
 
    <img src="images/bist_break_point.png" alt="Figure 280" width=700/>
+
+   <br>
   
-   4.	Index of sensor_capacitance array matches with the sensor configuration in CAPSENSE&trade; Configurator, as shown in **Figure 29**.
+   3.	Index of sensor_capacitance array matches with the sensor configuration in CAPSENSE&trade; Configurator, as shown in **Figure 29**.
 
    **Figure 23. Cp array index alignment**
 
    <img src="images/cp_alignment.png" alt="Figure 29" width=700/>
 
-   5. Refer to [CAPSENSE&trade; library and documents](https://github.com/Infineon/capsense) for more details about BIST.
-   6. Keep this feature disabled in CAPSENSE&trade; Configurator, if not used in application.
+   <br>
+
+   4. Refer to [CAPSENSE&trade; library and documents](https://github.com/Infineon/capsense) for more details about BIST.
+   5. Keep this feature disabled in CAPSENSE&trade; Configurator, if not used in application.
 
 ### **CDAC Dither scale setting**
 
@@ -632,19 +641,23 @@ The steps for optimizing these parameters are as follows:
 
 1. Measure the SNR as mentioned in the [Operation](#operation) section.
 
-   Measure the SNR by placing your hand above the proximity loop at maximum proximity height (35 mm in this case).
+   Measure the SNR by placing your hand above the proximity loop at maximum proximity height (45 mm in this case).
 
 2. If the SNR is less than 5:1 increase the number of sub-conversions. Edit the number of sub-conversions (N<sub>sub</sub>) directly in the **Widget/Sensor parameters** tab of the CAPSENSE&trade; Tuner.
 
-      **Note:** Number of sub-conversion should be greater than or equal to 8.
+      >**Note:** Number of sub-conversion should be greater than or equal to 8.
 
 3. PSoC&trade; 4000T CAPSENSE&trade; has a built-in CIC2 filter which increases the resolution for the same scan time. This example has the CIC2 filter enabled.
 
    Calculate the decimation rate of the CIC2 filter using **Equation 1**. The resolution increases with an increase in the decimation rate; therefore, set the maximum decimation rate indicated by the equation.
 
       **Equation 1. Decimation rate**
+      $$DecimationRate = min\left(\frac {SnsClkDiv * N_{sub}}{3},255\right) $$
 
-      ![](images/decimation-equation.png)
+      Where,
+      
+      - $N_{sub}$ is Number of Sub-Conversions
+      - $SnsClkDiv$ is Sense Clock Divider value
 
 4.  Load the parameters to the device and measure SNR as mentioned in Steps 10 and 11 in the [Monitor data using CAPSENSE&trade; Tuner](#monitor-data-using-capsense™-tuner) section. 
    
@@ -666,11 +679,11 @@ The steps for optimizing these parameters are as follows:
 
       <img src="images/advanced-filter-settings.png" alt="Figure 28"/>
 
-      **Note** : Add the filter based on the type of noise in your measurements. See [ModusToolbox&trade; CAPSENSE&trade; configurator guide](https://www.infineon.com/file/492896/download) for details.
+      >**Note** : Add the filter based on the type of noise in your measurements. See [ModusToolbox&trade; CAPSENSE&trade; configurator guide](https://www.infineon.com/file/492896/download) for details.
 
    b. Click Save and close CAPSENSE&trade; Configurator. Program the device to update the filter settings.
 
-   **Note** : Increasing number of sub-conversions and enabling filters increases the scan time which in turn decreases the responsiveness of the sensor. Increase in scan time also increases the power consumption. Therefore, the number of sub-conversions and filter configuration must be optimized to achieve a balance between SNR, power, and refresh rate. 
+   >**Note** : Increasing number of sub-conversions and enabling filters increases the scan time which in turn decreases the responsiveness of the sensor. Increase in scan time also increases the power consumption. Therefore, the number of sub-conversions and filter configuration must be optimized to achieve a balance between SNR, power, and refresh rate. 
 
 ### Stage 5: Tune threshold parameters
 -------------------------
@@ -714,7 +727,7 @@ Various thresholds, relative to the signal, need to be set for each sensor. Do t
 
    <img src="images/tuner-apply-settings-device.png" alt="Figure 30"/>
 
-   If your sensor is tuned correctly, you will observe that the proximity status goes from 0 to 1 in the **Status** sub-window of the **Graph View** window as **Figure 35** shows. The successful tuning of the proximity sensor is also indicated by LED3 in the kit; it turns ON when the hand comes closer than the maximum distance and turns OFF when the hand is moved away from the proximity sensor.
+   If your sensor is tuned correctly, you will observe that the proximity status goes from 0 to 1 in the **Status** sub-window of the **Graph View** window as **Figure 35** shows. The successful tuning of the proximity sensor is also indicated by LED1 in the kit; it turns ON (green) when the hand comes closer than the maximum distance and turns OFF when the hand is moved away from the proximity sensor.
 
    **Figure 31. Sensor status in CAPSENSE&trade; Tuner showing proximity status**
 
@@ -809,15 +822,52 @@ Follow these steps to measure the process time of the blocks of application code
       ```
 ### **Scan time Measurement**
 --------------------
-Scan time is also part of calculating the refresh rate of power modes and can be calculated as follows:
+Scan time is also required for calculating the refresh rate of the application power modes. The total scan time of all the widgets in this code example is 10 µs.
 
-   **Equation 2. Scan time calculation of a widget**
+It can be calculated as follows:
 
-   <img src="images/scan_time-equation.png" alt="Figure 34" width=400/>
+The scan time includes the MSCLP initialization time, Cmod, and the total sub-conversions of the sensor. 
 
-A fixed duration of 30 µs is added, which is the standard initialization time taken before each scan.
+To control the Cmod initialization sequence, set the "Enable Coarse initialization bypass" configurator option as listed in the following table:
 
-Update the following macros in main.c using the scan time calculated. The value remains the same for both macros.
+Enable coarse initialization bypass | Behaviour
+:-------------|:---------
+TRUE|Cmod initialization happens only once before scanning the sensors of the widget
+FALSE| Cmod initialization happens before scanning each sensor of the widget
+
+Use the following equations to measure the widgets scan time based on coarse initialization bypass options selected: 
+
+**Equation 2. Scan time calculation of a widget with coarse initialization bypass enabled**
+
+$$ScanTime_{widget} = \left(\sum_{sensor=1}^n \left((N_{init} + N_{sub}) * \frac {SnsClkDiv}{F_{mod}}\right)\right) +k $$
+
+
+**Equation 3. Scan time calculation of a widget with coarse initialization bypass disabled**
+
+$$ScanTime_{widget} = \sum_{sensor=1}^n \left((N_{init} + N_{sub}) * \frac {SnsClkDiv}{F_{mod}} +k \right) $$
+
+
+where,
+
+- $n$ - Total number of sensors in the widget
+
+- $N_{sub}$ - Number of sub-conversions
+
+- $N_{init}$ - Number of init sub-conversions
+
+- $SnsClkDiv$ - Sense clock divider
+
+- $F_{mod}$ - Modulator clock frequency
+
+- $k$ - Measured Initialization time (MSCLP+Cmod).
+
+This value of '$k$' measured for this application is ~9 µs. It remains constant for all widgets, and can be measured using oscilloscope as shown below;
+
+ **Figure 34. 'k' value measurement**
+
+   <img src="images/scantime_wave.png" alt="Figure 34"/>
+
+Update following macros in *main.c* using the scan time calculated. The value remains the same for both macros for this application.
 
 ```
 #define ACTIVE_MODE_FRAME_SCAN_TIME     (xx)
@@ -825,7 +875,7 @@ Update the following macros in main.c using the scan time calculated. The value 
 #define ALR_MODE_FRAME_SCAN_TIME        (xx)
 ```
 
-**Note :** If the application has more than one widget, add the scan times of individual widgets calculated.
+> **Note :** If the application has more than one widget, add the scan times of individual widgets calculated.
 
 <br>
 
@@ -833,7 +883,9 @@ Update the following macros in main.c using the scan time calculated. The value 
 
 You can debug the example to step through the code. In the IDE, use the **\<Application Name> Debug (KitProg3_MiniProg4)** configuration in the **Quick Panel**. For details, see the "Program and debug" section in the [Eclipse IDE for ModusToolbox&trade; user guide](https://www.infineon.com/MTBEclipseIDEUserGuide).
 
-<br>
+By default, the debug option is disabled in the device configurator. To enable the debug option, see the [Setup VDD and Debug mode](#set-up-the-vdda-supply-voltage-and-debug-mode-in-device-configurator) section. To achieve low power consumption, it is recommended to disable it. 
+
+   <br>
 
 ## Design and implementation
 
@@ -859,9 +911,9 @@ The firmware is designed to support the following application states:
 - Active low-refresh rate state
 - Wake-on-touch state
 
-   **Figure 34. Firmware state-machine**
+   **Figure 35. Firmware state-machine**
 
-   <img src="images/psoc_4000t_simple_state_machine.png" alt="Figure 34" width="500"/>
+   <img src="images/psoc_4000t_simple_state_machine.png" alt="Figure 35" width="500"/>
 
    <br>
 
@@ -889,9 +941,9 @@ There are three onboard RGB LEDs connected to the SPI MOSI pin of the device. Th
 
 ### Firmware flow
 
-**Figure 35. Firmware flowchart**
+**Figure 36. Firmware flowchart**
 
-<img src="images/firmware-flowchart.png" alt="Figure 35" width="800"/>
+<img src="images/firmware-flowchart.png" alt="Figure 36" width="800"/>
 
 <br>
 
@@ -901,26 +953,27 @@ There are three onboard RGB LEDs connected to the SPI MOSI pin of the device. Th
 
 2. Go to the **System** tab. Select the **Power** resource, and set the VDDA value under **Operating conditions** as follows:
 
-   **Figure 36. Setting the VDDA supply in the System tab of Device Configurator**
+   **Figure 37. Setting the VDDA supply in the System tab of Device Configurator**
 
-   <img src="images/vdda-settings.png" alt="Figure 36"/>
+   <img src="images/vdda-settings.png" alt="Figure 37"/>
 
-3. By default, SWD pins are active in all device power modes. Disable debug mode to disable SWD pins and thereby reduce the power consumption as follows:
+3. By default, the debug mode is disabled for this application to reduce power consumption. Enable the debug mode to enable the SWD pins as follows:
 
-   **Figure 37. Disable Debug mode in the System tab of Device Configurator**
+   ##### **Figure 38. Enable debug mode in the System tab of Device Configurator**
 
-   <img src="images/disable-swd.png" alt="Figure 37"/>
+   <img src="images/enable_debug.png" alt="Figure 38"/>
 
+<br>
 
 ### Resources and settings
 
-**Figure 38. EZI2C settings**
+**Figure 39. EZI2C settings**
 
-<img src="images/ezi2c-config.png" alt="Figure 38" width="800"/>
+<img src="images/ezi2c-config.png" alt="Figure 39" width="800"/>
 
-**Figure 39. SPI settings**
+**Figure 40. SPI settings**
 
-<img src="images/spi-config.png" alt="Figure 39" width="800"/>
+<img src="images/spi-config.png" alt="Figure 40" width="800"/>
 
 **Table 7. Application resources**
 
@@ -964,6 +1017,7 @@ Document title: *CE236033* – *PSoC&trade; 4: MSCLP CAPSENSE&trade; low-power p
  1.2.0   | Minor README and configuration update
  1.3.0   | Updated to ModusToolbox&trade; version 3.1 
  1.4.0   | Minor fixes in README
+ 1.5.0   | Scan time calculation updates and debug disabled by default
 
  <br>
 

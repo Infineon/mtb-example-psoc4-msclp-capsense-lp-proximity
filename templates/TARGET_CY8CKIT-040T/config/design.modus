@@ -3,14 +3,8 @@
     <Devices>
         <Device mpn="CY8C4046LQI-T452">
             <BlockConfig>
-                <Block location="cpuss[0].dap[0]">
-                    <Personality template="m0s8dap" version="1.0">
-                        <Param id="dbgMode" value="SWD"/>
-                    </Personality>
-                </Block>
                 <Block location="ioss[0].port[0].pin[0]">
-                    <Alias value="CYBSP_CSD_TP_COL4"/>
-                    <Alias value="CYBSP_CSX_TP_RX4"/>
+                    <Alias value="CYBSP_CS_SHIELD1"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -22,8 +16,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[0].pin[1]">
-                    <Alias value="CYBSP_CSD_TP_COL3"/>
-                    <Alias value="CYBSP_CSX_TP_RX3"/>
+                    <Alias value="CYBSP_CS_SHIELD2"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -35,8 +28,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[0].pin[2]">
-                    <Alias value="CYBSP_CSD_TP_COL2"/>
-                    <Alias value="CYBSP_CSX_TP_RX2"/>
+                    <Alias value="CYBSP_CS_SHIELD3"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -48,8 +40,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[0].pin[3]">
-                    <Alias value="CYBSP_CSD_TP_COL1"/>
-                    <Alias value="CYBSP_CSX_TP_RX1"/>
+                    <Alias value="CYBSP_CS_SHIELD4"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -61,8 +52,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[0].pin[4]">
-                    <Alias value="CYBSP_CSD_TP_COL0"/>
-                    <Alias value="CYBSP_CSX_TP_RX0"/>
+                    <Alias value="CYBSP_CS_SHIELD5"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -74,6 +64,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[1].pin[0]">
+                    <Alias value="CYBSP_CS_SHIELD8"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -85,8 +76,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[2].pin[1]">
-                    <Alias value="CYBSP_CSD_TP_ROW3"/>
-                    <Alias value="CYBSP_CSX_TP_TX3"/>
+                    <Alias value="CYBSP_CS_SHIELD9"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -98,8 +88,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[2].pin[2]">
-                    <Alias value="CYBSP_CSD_TP_ROW2"/>
-                    <Alias value="CYBSP_CSX_TP_TX2"/>
+                    <Alias value="CYBSP_I2C_SCL"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_OD_DRIVESLOW"/>
                         <Param id="initialState" value="1"/>
@@ -111,8 +100,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[2].pin[3]">
-                    <Alias value="CYBSP_CSD_TP_ROW1"/>
-                    <Alias value="CYBSP_CSX_TP_TX1"/>
+                    <Alias value="CYBSP_I2C_SDA"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_OD_DRIVESLOW"/>
                         <Param id="initialState" value="1"/>
@@ -124,8 +112,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[2].pin[4]">
-                    <Alias value="CYBSP_CSD_TP_ROW0"/>
-                    <Alias value="CYBSP_CSX_TP_TX0"/>
+                    <Alias value="CYBSP_CS_SHIELD6"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -149,7 +136,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[3].pin[0]">
-                    <Alias value="CYBSP_CS_SHIELD"/>
+                    <Alias value="CYBSP_CS_SHIELD0"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -162,9 +149,6 @@
                 </Block>
                 <Block location="ioss[0].port[3].pin[2]">
                     <Alias value="CYBSP_SWDIO"/>
-                    <Alias value="CYBSP_USER_LED"/>
-                    <Alias value="CYBSP_USER_LED1"/>
-                    <Alias value="CYBSP_I2C_SDA"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_STRONG"/>
                         <Param id="initialState" value="1"/>
@@ -177,7 +161,6 @@
                 </Block>
                 <Block location="ioss[0].port[3].pin[3]">
                     <Alias value="CYBSP_SWDCK"/>
-                    <Alias value="CYBSP_I2C_SCL"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_STRONG"/>
                         <Param id="initialState" value="1"/>
@@ -191,6 +174,7 @@
                 <Block location="ioss[0].port[4].pin[0]">
                     <Alias value="CYBSP_SERIAL_LED"/>
                     <Alias value="CYBSP_SPI_MOSI"/>
+                    <Alias value="CYBSP_USER_LED"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="initialState" value="0"/>
@@ -202,7 +186,7 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[4].pin[1]">
-                    <Alias value="CYBSP_CSD_BTN0"/>
+                    <Alias value="CYBSP_CS_SHIELD7"/>
                     <Personality template="m0s8pin" version="2.0">
                         <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
                         <Param id="initialState" value="1"/>
@@ -393,14 +377,6 @@
                 </Block>
             </BlockConfig>
             <Netlist>
-                <Net>
-                    <Port name="cpuss[0].dap[0].swd_clk[0]"/>
-                    <Port name="ioss[0].port[3].pin[3].digital_in[0]"/>
-                </Net>
-                <Net>
-                    <Port name="cpuss[0].dap[0].swd_data[0]"/>
-                    <Port name="ioss[0].port[3].pin[2].digital_inout[0]"/>
-                </Net>
                 <Net>
                     <Port name="ioss[0].port[2].pin[2].digital_inout[0]"/>
                     <Port name="scb[1].i2c_scl[0]"/>
