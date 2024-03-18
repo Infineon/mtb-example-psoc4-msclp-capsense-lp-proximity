@@ -152,10 +152,6 @@ typedef enum
 static void InitializeCapsense(void);
 static void Capsense_Msc0Isr(void);
 
-#if CY_CAPSENSE_BIST_EN
-static void MeasureSensorCapacitance(uint32_t *sensorCapacitance);
-#endif
-
 static void Ezi2cIsr(void);
 static void InitializeCapsenseTuner(void);
 
@@ -274,11 +270,6 @@ int main(void)
     uint32_t appStateTimeoutCount;
     uint32_t interruptStatus;
 
-    /* Variables to store parasitic capacitance values of each sensor measured by BIST*/
-#if CY_CAPSENSE_BIST_EN
-    uint32_t sensorCapacitance[CY_CAPSENSE_SENSOR_COUNT];
-#endif
-
 #if ENABLE_RUN_TIME_MEASUREMENT
     static uint32_t activeModeRunTime;
     static uint32_t alrModeRunTime;
@@ -329,11 +320,6 @@ int main(void)
 #if ENABLE_SPI_SERIAL_LED
     /* Serial LED control for showing the CAPSENSE touch status and power mode */
     UpdateLeds();
-#endif
-
-    /* measure sensor Cp */
-#if CY_CAPSENSE_BIST_EN
-    MeasureSensorCapacitance(sensorCapacitance);
 #endif
 
     /* Measures the actual ILO frequency and compensate MSCLP wake up timers */
@@ -694,47 +680,6 @@ cy_en_syspm_status_t DeepSleepCallback(
     }
     return retValue;
 }
-
-#if CY_CAPSENSE_BIST_EN
-/*******************************************************************************
-* Function Name: MeasureSensorCapacitance
-********************************************************************************
-* Summary:
-*  Measure the sensor Capacitance of all sensors configured and stores the values in an array using BIST.
-*  BIST Measurements are taken by Connection connecting ISC to Shield.
-*  It is based on actual application configuration.
-* Parameters:
-*   sensorCapacitance - This array holds the measured sensor capacitance values.
-*                        array values are arranged as regular widget sensors first and
-*                        followed by Low power widget sensors . refer configurator for the
-*                        sensor order.
-*******************************************************************************/
-static void MeasureSensorCapacitance(uint32_t *sensorCapacitance)
-{
-    /* For BIST configuration Connecting all Inactive sensor connections (ISC) of CSD sensors to to shield*/
-    Cy_CapSense_SetInactiveElectrodeState(CY_CAPSENSE_SNS_CONNECTION_SHIELD,
-    CY_CAPSENSE_BIST_CSD_GROUP, &cy_capsense_context);
-    /* For BIST configuration Connecting all Inactive sensor connections (ISC) of CSX sensors to to GND*/
-    Cy_CapSense_SetInactiveElectrodeState(CY_CAPSENSE_SNS_CONNECTION_SHIELD,
-    CY_CAPSENSE_BIST_CSD_GROUP, &cy_capsense_context);
-
-    /*Runs the BIST to measure the sensor capacitance*/
-    Cy_CapSense_RunSelfTest(CY_CAPSENSE_BIST_SNS_CAP_MASK,
-            &cy_capsense_context);
-    memcpy(sensorCapacitance,
-            cy_capsense_context.ptrWdConfig->ptrSnsCapacitance,
-            CY_CAPSENSE_SENSOR_COUNT * sizeof(uint32_t));
-
-    /* For BIST configuration Connecting all Inactive sensor connections (ISC) of Shield sensors to to Shield*/
-    Cy_CapSense_SetInactiveElectrodeState(CY_CAPSENSE_SNS_CONNECTION_SHIELD,
-    CY_CAPSENSE_BIST_SHIELD_GROUP, &cy_capsense_context);
-
-    /*Runs the BIST to measure the Shield capacitance*/
-    Cy_CapSense_RunSelfTest(CY_CAPSENSE_BIST_SHIELD_CAP_MASK,
-            &cy_capsense_context);
-
-}
-#endif
 
 #if ENABLE_RUN_TIME_MEASUREMENT
 /*******************************************************************************
